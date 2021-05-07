@@ -6,6 +6,7 @@ use App\Models\Report;
 use App\Models\province;
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Storage;
 
 class ReportController extends Controller
 {
@@ -88,7 +89,14 @@ class ReportController extends Controller
      */
     public function edit(Report $report)
     {
-        //
+        $old = $report;
+        $route = route('report.update', $report->id);
+        $method = 'PUT';
+        $provinces = province::all();
+        $topics = Topic::all();
+        $years = $this->get_list_of_years();
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        return view('add_edit_report', compact('route', 'method', 'provinces', 'topics', 'years', 'months', 'old'));
     }
 
     /**
@@ -100,7 +108,28 @@ class ReportController extends Controller
      */
     public function update(Request $request, Report $report)
     {
-        //
+        if ($request->hasFile('weekly_report')) {
+            // Delete previously uploaded file.
+            Storage::delete($report->weekly_report_file);
+            $name = strtotime(date('Y-m-dTH:i:s')) . $request->file('weekly_report')->getClientOriginalName();
+            $weekly_report_file = $request->file('weekly_report')->storeAs('weekly_reports', $name);
+
+            // Update the record based on the new uploaded file.
+            $report->weekly_report_file = $weekly_report_file;
+        }
+
+        $report->province = $request->province;
+        $report->topic = $request->topic;
+        $report->number_of_male = $request->male;
+        $report->number_of_female = $request->female;
+        $report->year = $request->year;
+        $report->month = $request->month;
+        $report->week = $request->week;
+        $report->indirect_benificiaries = $request->benificiaries;
+
+        $report->save();
+
+        return redirect()->route('report.index');
     }
 
     /**
@@ -111,7 +140,9 @@ class ReportController extends Controller
      */
     public function destroy(Report $report)
     {
-        //
+        Storage::delete($report->weekly_report_file);
+        $report->delete();
+        return redirect()->route('report.index');
     }
 
     public function get_list_of_years() {

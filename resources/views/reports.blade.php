@@ -55,8 +55,12 @@
                         <td>{{ $report->month }}</td>
                         <td>{{ $report->year }}</td>
                         <td>
-                            <button class="btn btn-success btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <a href="{{ route('report.edit', $report->id) }}" class="btn btn-success btn-sm">Edit</a>
+                            <form action="{{ route('report.destroy', $report->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                             @if ($report->weekly_report_file)
                                 <a href="{{ asset($report->weekly_report_file) }}" class="btn btn-warning">File</a>
                             @endif

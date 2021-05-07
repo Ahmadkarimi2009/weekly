@@ -48,7 +48,25 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        if ($request->hasFile('weekly_report')) {
+            $name = strtotime(date('Y-m-dTH:i:s')) . $request->file('weekly_report')->getClientOriginalName();
+            $weekly_report_file = $request->file('weekly_report')->storeAs('weekly_reports', $name);
+        }
+
+        $report = new Report;
+        $report->province = $request->province;
+        $report->topic = $request->topic;
+        $report->number_of_male = $request->male;
+        $report->number_of_female = $request->female;
+        $report->year = $request->year;
+        $report->month = $request->month;
+        $report->week = $request->week;
+        $report->weekly_report_file = $weekly_report_file;
+        $report->indirect_benificiaries = $request->benificiaries;
+
+        $report->save();
+
+        return redirect()->route('report.index');
     }
 
     /**

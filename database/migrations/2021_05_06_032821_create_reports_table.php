@@ -18,11 +18,12 @@ class CreateReportsTable extends Migration
             $table->smallInteger('number_of_male');
             $table->smallInteger('number_of_female');
             $table->enum('week', [1, 2, 3, 4]);
-            $table->enum('month', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+            $table->enum('month', ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December']);
             $table->year('year');
             $table->smallInteger('indirect_benificiaries');
             $table->unsignedTinyInteger('province');
             $table->unsignedTinyInteger('topic');
+            $table->string('weekly_report_file')->nullable();
             $table->timestamps();
         });
     }

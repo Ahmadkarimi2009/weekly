@@ -57,6 +57,9 @@
                         <td>
                             <button class="btn btn-success btn-sm">Edit</button>
                             <button class="btn btn-danger btn-sm">Delete</button>
+                            @if ($report->weekly_report_file)
+                                <a href="{{ asset($report->weekly_report_file) }}" class="btn btn-warning">File</a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

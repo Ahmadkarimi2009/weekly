@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,5 @@ use App\Http\Controllers\ProvinceController;
 */
 
 Route::get('/', [ProvinceController::class, 'index']);
+
+Route::resource('report', ReportController::class);

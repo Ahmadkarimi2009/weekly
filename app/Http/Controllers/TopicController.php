@@ -14,7 +14,9 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        $topics = Topic::all();
+
+        return view('topics', compact('topics'));
     }
 
     /**
@@ -24,7 +26,9 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        $route = route('topic.store');
+        $method = 'POST';
+        return view('add_edit_topic', compact('route', 'method'));
     }
 
     /**
@@ -35,7 +39,11 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $topic = new Topic;
+        $topic->name = $request->name;
+        $topic->type = $request->type;
+        $topic->save();
+        return redirect()->route('topic.index');
     }
 
     /**
@@ -57,7 +65,10 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        //
+        $route = route('topic.update', $topic->id);
+        $method = 'PUT';
+        $old = $topic;
+        return view('add_edit_topic', compact('route', 'method', 'old'));
     }
 
     /**
@@ -69,7 +80,10 @@ class TopicController extends Controller
      */
     public function update(Request $request, Topic $topic)
     {
-        //
+        $topic->name = $request->name;
+        $topic->type = $request->type;
+        $topic->save();
+        return redirect()->route('topic.index');
     }
 
     /**
@@ -80,6 +94,7 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        //
+        $topic->delete();
+        return redirect()->route('topic.index');
     }
 }

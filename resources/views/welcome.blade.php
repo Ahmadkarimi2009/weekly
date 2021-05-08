@@ -27,8 +27,12 @@
                         <th>{{ $province->id }}</th>
                         <td>{{ $province->name }}</td>
                         <td>
-                            <button class="btn btn-success btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <a href="{{ route('province.edit', $province->id) }}" class="btn btn-success btn-sm">Edit</a>
+                            <form action="{{ route('province.destroy', $province->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

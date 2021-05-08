@@ -25,7 +25,9 @@ class ProvinceController extends Controller
      */
     public function create()
     {
-        //
+        $route = route('province.store');
+        $method = 'POST';
+        return view('add_edit_province', compact('route', 'method'));
     }
 
     /**
@@ -36,7 +38,11 @@ class ProvinceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $province = new province;
+        $province->name = $request->name;
+        $province->save();
+
+        return redirect()->route('province.index');
     }
 
     /**
@@ -58,7 +64,10 @@ class ProvinceController extends Controller
      */
     public function edit(province $province)
     {
-        //
+        $route = route('province.update', $province->id);
+        $method = 'PUT';
+        $old = $province;
+        return view('add_edit_province', compact('route', 'method', 'old'));
     }
 
     /**
@@ -70,7 +79,9 @@ class ProvinceController extends Controller
      */
     public function update(Request $request, province $province)
     {
-        //
+        $province->name = $request->name;
+        $province->save();
+        return redirect()->route('province.index');
     }
 
     /**
@@ -81,6 +92,7 @@ class ProvinceController extends Controller
      */
     public function destroy(province $province)
     {
-        //
+        $province->delete();
+        return redirect()->route('province.index');
     }
 }

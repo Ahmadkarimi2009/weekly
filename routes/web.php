@@ -21,3 +21,6 @@ Route::get('/', [ReportController::class, 'index']);
 Route::resource('report', ReportController::class);
 Route::resource('topic', TopicController::class);
 Route::resource('province', ProvinceController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

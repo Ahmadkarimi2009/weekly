@@ -39,6 +39,9 @@ class ProvinceController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:provinces',
+        ]);
         $province = new province;
         $province->name = $request->name;
         $province->save();
@@ -81,6 +84,10 @@ class ProvinceController extends Controller
      */
     public function update(Request $request, province $province)
     {
+        $validated = $request->validate([
+            'name' => 'equired|unique:provinces,name,' . $province->id,
+        ]);
+
         $province->name = $request->name;
         $province->save();
         Session::flash('message', ['Update Successful!', 'Province Updated Successfully!', 'success']);

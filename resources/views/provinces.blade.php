@@ -60,6 +60,7 @@
     <script src="{{ asset('/js/datatable_bootstrap.js') }}"></script>
     <script src="{{ asset('/js/sweetalert.js') }}"></script>
     <script src="{{ asset('/js/forms.js') }}"></script>
+    <script src="{{ asset('/js/snippet.js') }}"></script>
   </body>
 </html>
 @if(Session::has('message'))

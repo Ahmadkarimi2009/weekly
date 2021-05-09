@@ -84,9 +84,6 @@ class ProvinceController extends Controller
      */
     public function update(Request $request, province $province)
     {
-        $validated = $request->validate([
-            'name' => 'equired|unique:provinces,name,' . $province->id,
-        ]);
 
         $province->name = $request->name;
         $province->save();

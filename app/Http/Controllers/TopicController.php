@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Session;
 
 class TopicController extends Controller
 {
@@ -43,6 +44,7 @@ class TopicController extends Controller
         $topic->name = $request->name;
         $topic->type = $request->type;
         $topic->save();
+        Session::flash('message', ['Insertion Successful!', 'Province Store Successfully!', 'success']);
         return redirect()->route('topic.index');
     }
 
@@ -83,6 +85,7 @@ class TopicController extends Controller
         $topic->name = $request->name;
         $topic->type = $request->type;
         $topic->save();
+        Session::flash('message', ['Update Successful!', 'Province Updated Successfully!', 'success']);
         return redirect()->route('topic.index');
     }
 
@@ -95,6 +98,7 @@ class TopicController extends Controller
     public function destroy(Topic $topic)
     {
         $topic->delete();
+        Session::flash('message', ["Deletion Successful!", "Province Deleted Successfully!", "success"]);
         return redirect()->route('topic.index');
     }
 }

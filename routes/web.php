@@ -16,7 +16,7 @@ use App\Http\Controllers\TopicController;
 |
 */
 
-Route::get('/', [ProvinceController::class, 'index']);
+Route::get('/', [ReportController::class, 'index']);
 
 Route::resource('report', ReportController::class);
 Route::resource('topic', TopicController::class);

@@ -53,3 +53,25 @@ function set_value_to_zero_if_minus(thiss) {
         thiss.value = 0;
     }
 }
+
+/**
+ * Confirmation of deletion forms before submissions.
+ */
+$(document).ready(function(){
+
+    $('.delete_forms').on('click', function(e){
+        swal({
+            title: "Are you sure?",
+            text: "You want to delete this?!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+              $(this).parent('form').submit();
+            } else {
+              swal("Process Canceled. You are safe!");
+            }
+        });
+    })
+});

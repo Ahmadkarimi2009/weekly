@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\province;
 use Illuminate\Http\Request;
+use Session;
 
 class ProvinceController extends Controller
 {
@@ -15,7 +16,7 @@ class ProvinceController extends Controller
     public function index()
     {
         $provinces = province::all();
-        return view('welcome', compact('provinces'));
+        return view('provinces', compact('provinces'));
     }
 
     /**
@@ -42,6 +43,7 @@ class ProvinceController extends Controller
         $province->name = $request->name;
         $province->save();
 
+        Session::flash('message', ['Insertion Successful!', 'Province Store Successfully!', 'success']);
         return redirect()->route('province.index');
     }
 
@@ -81,6 +83,7 @@ class ProvinceController extends Controller
     {
         $province->name = $request->name;
         $province->save();
+        Session::flash('message', ['Update Successful!', 'Province Updated Successfully!', 'success']);
         return redirect()->route('province.index');
     }
 
@@ -93,6 +96,7 @@ class ProvinceController extends Controller
     public function destroy(province $province)
     {
         $province->delete();
+        Session::flash('message', ["Deletion Successful!", "Province Deleted Successfully!", "success"]);
         return redirect()->route('province.index');
     }
 }

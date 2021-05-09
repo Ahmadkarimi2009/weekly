@@ -56,10 +56,10 @@
                         <td>{{ $report->year }}</td>
                         <td>
                             <a href="{{ route('report.edit', $report->id) }}" class="btn btn-success btn-sm">Edit</a>
-                            <form action="{{ route('report.destroy', $report->id) }}" method="post">
+                            <form action="{{ route('report.destroy', $report->id) }}" method="post" class="">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="button" class="btn btn-danger btn-sm delete_forms">Delete</button>
                             </form>
                             @if ($report->weekly_report_file)
                                 <a href="{{ asset($report->weekly_report_file) }}" class="btn btn-warning">File</a>
@@ -73,5 +73,13 @@
     </div>
     
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/js/jquery.js') }}"></script>
+    <script src="{{ asset('/js/sweetalert.js') }}"></script>
+    <script src="{{ asset('/js/forms.js') }}"></script>
   </body>
 </html>
+@if(Session::has('message'))
+    <script>
+        swal('{{ Session::get('message')[0]}}', '{{ Session::get('message')[1]}}', '{{ Session::get('message')[2]}}');
+    </script>
+@endif

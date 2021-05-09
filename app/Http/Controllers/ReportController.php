@@ -7,6 +7,7 @@ use App\Models\province;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Storage;
+use Session;
 
 class ReportController extends Controller
 {
@@ -67,6 +68,7 @@ class ReportController extends Controller
 
         $report->save();
 
+        Session::flash('message', ['Insertion Successful!', 'Province Store Successfully!', 'success']);
         return redirect()->route('report.index');
     }
 
@@ -129,6 +131,7 @@ class ReportController extends Controller
 
         $report->save();
 
+        Session::flash('message', ['Update Successful!', 'Province Updated Successfully!', 'success']);
         return redirect()->route('report.index');
     }
 
@@ -142,6 +145,7 @@ class ReportController extends Controller
     {
         Storage::delete($report->weekly_report_file);
         $report->delete();
+        Session::flash('message', ["Deletion Successful!", "Province Deleted Successfully!", "success"]);
         return redirect()->route('report.index');
     }
 

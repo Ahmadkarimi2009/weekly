@@ -31,7 +31,7 @@
                             <form action="{{ route('province.destroy', $province->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="button" class="btn btn-danger btn-sm delete_forms">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -42,5 +42,13 @@
     </div>
     
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/js/jquery.js') }}"></script>
+    <script src="{{ asset('/js/sweetalert.js') }}"></script>
+    <script src="{{ asset('/js/forms.js') }}"></script>
   </body>
 </html>
+@if(Session::has('message'))
+    <script>
+        swal('{{ Session::get('message')[0]}}', '{{ Session::get('message')[1]}}', '{{ Session::get('message')[2]}}');
+    </script>
+@endif

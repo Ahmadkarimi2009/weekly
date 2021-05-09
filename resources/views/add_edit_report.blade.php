@@ -7,18 +7,21 @@
 
     <!-- Bootstrap CSS -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/navbar.css') }}" rel="stylesheet">
 
     <title>Reports</title>
   </head>
   <body>
-    <div class="container mt-5">
+      @include('navbar')
+      <div class="container mt-5">
         <div class="row">
             <form action="{{ $route }}" method="POST" class="row g-3" enctype="multipart/form-data">
               @method($method)
               @csrf
               <div class="col-sm-12">
-                <div class="form-floating">
-                  <select class="form-select" name="province" id="province_select_box" aria-label="Select Province Select Box" required>
+                <div class="form-group pt-3">
+                  <label for="province_select_box">Works with selects</label>
+                  <select class="form-control form-control-lg" name="province" id="province_select_box" aria-label="Select Province Select Box" required>
                     <option selected value="">Select Province</option>
                     @foreach ($provinces as $province)
                       <option value="{{ $province->id }}"
@@ -28,12 +31,12 @@
                       >{{ $province->name}}</option>
                     @endforeach
                   </select>
-                  <label for="province_select_box">Works with selects</label>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-floating">
-                  <select class="form-select" name="topic" id="topics_select_box" aria-label="Select Topics Select Box" required>
+                <div class="form-group pt-3">
+                  <label for="topics_select_box">List of Topics</label>
+                  <select class="form-control form-control-lg" name="topic" id="topics_select_box" aria-label="Select Topics Select Box" required>
                       <option value="">Select Topic</option>
                       @foreach ($topics as $topic)
                         <option value="{{ $topic->id }}"
@@ -43,12 +46,12 @@
                         >{{ $topic->name}}</option>
                       @endforeach
                     </select>
-                  <label for="topics_select_box">List of Topics</label>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-floating">
-                  <select class="form-select" name="year" id="years_select_box" aria-label="Select Years Select Box" required>
+                <div class="form-group pt-3">
+                  <label for="years_select_box">List of Years</label>
+                  <select class="form-control form-control-lg" name="year" id="years_select_box" aria-label="Select Years Select Box" required>
                       <option value="">Select Year</option>
                       @foreach ($years as $year)
                         <option value="{{ $year }}"
@@ -60,12 +63,12 @@
                         >{{ $year}}</option>
                       @endforeach
                   </select>
-                  <label for="years_select_box">List of Years</label>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-floating">
-                  <select class="form-select" name="month" id="months_select_box" aria-label="Select Month Select Box" required>
+                <div class="form-group pt-3">
+                  <label for="months_select_box">List of Months</label>
+                  <select class="form-control form-control-lg" name="month" id="months_select_box" aria-label="Select Month Select Box" required>
                       <option value="">Select Month</option>
                       @foreach ($months as $month)
                         <option value="{{ $month }}"
@@ -77,12 +80,12 @@
                         >{{ $month}}</option>
                       @endforeach
                   </select>
-                  <label for="months_select_box">List of Months</label>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-floating">
-                  <select class="form-select" name="week" id="weeks_select_box" aria-label="Select Week Select Box" required>
+                <div class="form-group pt-3">
+                  <label for="weeks_select_box">List of Months</label>
+                  <select class="form-control form-control-lg" name="week" id="weeks_select_box" aria-label="Select Week Select Box" required>
                       <option value="">Select Week</option>
                       <option value="1"
                         @if (isset($old) && $old->year == 1)
@@ -105,65 +108,64 @@
                         @endif
                       >4</option>
                   </select>
-                  <label for="weeks_select_box">List of Months</label>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-floating">
-                  <input type="number" class="form-control mw_totals"
+                <div class="form-group pt-3">
+                  <label for="total_number_of_men">Total Number of Men</label>
+                  <input type="number" class="form-control form-control-lg mw_totals"
                     @if (isset($old))
                       value="{{ $old->number_of_male }}"
                     @endif
-                  name="male" id="total_number_of_men" placeholder="123" required>
-                  <label for="total_number_of_men">Total Number of Men</label>
+                  name="male" id="total_number_of_men" placeholder="Total number of men" required>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-floating">
-                  <input type="number" class="form-control mw_totals"
+                <div class="form-group pt-3">
+                  <label for="total_number_of_women">Total Number of Women</label>
+                  <input type="number" class="form-control form-control-lg mw_totals"
                     @if (isset($old))
                       value="{{ $old->number_of_female }}"
                     @endif
-                  name="female" id="total_number_of_women" placeholder="123" required>
-                  <label for="total_number_of_women">Total Number of Women</label>
+                  name="female" id="total_number_of_women" placeholder="Total mumber of women" required>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-floating">
-                  <input type="number" class="form-control"
+                <div class="form-group pt-3">
+                  <label for="total_number_of_men_women">Total</label>
+                  <input type="number" class="form-control form-control-lg"
                     @if (isset($old))
                       value="{{ $old->number_of_female + $old->number_of_male }}"
                     @endif
-                  name="total" id="total_number_of_men_women" placeholder="123" readonly required>
-                  <label for="total_number_of_men_women">Total</label>
+                  name="total" id="total_number_of_men_women" placeholder="Total number of men and women" readonly required>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-floating">
-                  <input type="number" class="form-control"
+                <div class="form-group pt-3">
+                  <label for="total_number_of_benificiaries">Number of benificiaries</label>
+                  <input type="number" class="form-control form-control-lg"
                     @if (isset($old))
                       value="{{ $old->indirect_benificiaries }}"
                     @endif
-                  name="benificiaries" id="total_number_of_benificiaries" placeholder="123" readonly required>
-                  <label for="total_number_of_benificiaries">Number of benificiaries</label>
+                  name="benificiaries" id="total_number_of_benificiaries" placeholder="Total direct and indirect benificiaries" readonly required>
                 </div>
               </div>
               <div class="col-sm-12">
                 <div class="border rounded p-3">
                   <label for="original_weekly_report_file">Original weekly report file</label>
-                  <input type="file" class="form-control border-0 mt-2 ps-3" name="weekly_report" id="original_weekly_report_file" placeholder="123">
+                  <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="weekly_report" id="original_weekly_report_file" placeholder="123">
                 </div>
               </div>
               <div class="col-sm-12">
-                <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-success btn-lg">Save</button>
-                </div>
+                  <button type="submit" class="btn btn-success btn-lg btn-block mt-3">Save</button>
               </div>
             </form>
         </div>
     </div>
     
+    <script src="{{ asset('/js/jquery.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/js/sweetalert.js') }}"></script>
     <script src="{{ asset('/js/forms.js') }}"></script>
   </body>
 </html>

@@ -7,10 +7,12 @@
 
     <!-- Bootstrap CSS -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/navbar.css') }}" rel="stylesheet">
 
     <title>Reports</title>
   </head>
   <body>
+      @include('navbar')
     <div class="container mt-5">
         <div class="row">
             <table class="table table-bordered">
@@ -72,8 +74,8 @@
         </div>
     </div>
     
-    <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/js/jquery.js') }}"></script>
+    <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/js/sweetalert.js') }}"></script>
     <script src="{{ asset('/js/forms.js') }}"></script>
   </body>

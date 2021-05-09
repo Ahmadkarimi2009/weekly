@@ -7,35 +7,37 @@
 
     <!-- Bootstrap CSS -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/navbar.css') }}" rel="stylesheet">
 
     <title>Provinces</title>
   </head>
   <body>
-    <div class="container mt-5">
+      @include('navbar')
+      <div class="container mt-5">
         <div class="row">
-            <form action="{{ $route }}" method="POST" class="row g-3">
+            <form action="{{ $route }}" method="POST" class="w-100">
               @method($method)
               @csrf
               <div class="col-sm-12">
-                <div class="form-floating">
-                  <input type="text" class="form-control"
+                <div class="form-group mt-3">
+                  <label for="province_name">Province Name</label>
+                  <input type="text" class="form-control form-control-lg"
                     @if (isset($old))
                       value="{{ $old->name }}"
                     @endif
-                  name="name" id="province_name" placeholder="123" required>
-                  <label for="province_name">Province Name</label>
+                  name="name" id="province_name" placeholder="Name of the Province" required>
                 </div>
               </div>
               <div class="col-sm-12">
-                <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-success btn-lg">Save</button>
-                </div>
+                  <button type="submit" class="btn btn-success btn-lg btn-block">Save</button>
               </div>
             </form>
         </div>
     </div>
     
+    <script src="{{ asset('/js/jquery.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/js/sweetalert.js') }}"></script>
     <script src="{{ asset('/js/forms.js') }}"></script>
   </body>
 </html>

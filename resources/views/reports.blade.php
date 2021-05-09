@@ -16,7 +16,7 @@
       @include('navbar')
     <div class="container mt-5">
         <div class="row">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="reports_table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -75,6 +75,21 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

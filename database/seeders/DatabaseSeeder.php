@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ReportSeeder::class,
             TopicSeeder::class,
             FieldsSeeder::class,
+            EventTypeSeeder::class,
         ]);
     }
 }

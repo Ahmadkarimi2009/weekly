@@ -87,6 +87,18 @@ class FieldsSeeder extends Seeder
                 'machine_name' => 'reports',
                 'data_type' => 'text'
             ],
+            [
+                'name' =>'Stakeholder',
+                'table_name' => '',
+                'machine_name' => 'stakeholder',
+                'data_type' => 'text'
+            ],
+            [
+                'name' =>'Activity',
+                'table_name' => '',
+                'machine_name' => 'activity',
+                'data_type' => 'text'
+            ],
         ];
 
         Fields::insert($fields);

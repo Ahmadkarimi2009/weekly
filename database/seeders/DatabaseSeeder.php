@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             ReportSeeder::class,
             TopicSeeder::class,
+            FieldsSeeder::class,
         ]);
     }
 }

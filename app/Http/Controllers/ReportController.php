@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use App\Models\province;
 use App\Models\Topic;
+use App\Models\Fields;
+use App\Models\EventType;
 use Illuminate\Http\Request;
 use Storage;
 use Session;
@@ -37,9 +39,11 @@ class ReportController extends Controller
         $method = 'POST';
         $provinces = province::all();
         $topics = Topic::all();
+        $event_types = EventType::all();
+        $fields = Fields::all();
         $years = $this->get_list_of_years();
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
-        return view('add_edit_report', compact('route', 'method', 'provinces', 'topics', 'years', 'months'));
+        return view('add_edit_report', compact('route', 'method', 'provinces', 'topics', 'years', 'months', 'event_types', 'fields'));
     }
 
     /**

@@ -21,7 +21,7 @@ Auth::routes();
 
 
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/home', [ReportController::class, 'index'])->name('home');
     Route::get('/', [ReportController::class, 'index']);
 

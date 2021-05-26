@@ -22,9 +22,8 @@ class ReportController extends Controller
     {
         $reports = Report::all();
         $provinces = province::all();
-        $topics = Topic::all();
 
-        return view('reports', compact('reports', 'provinces', 'topics'));
+        return view('reports', compact('reports', 'provinces'));
     }
 
     /**
@@ -38,12 +37,11 @@ class ReportController extends Controller
         $route = route('report.store');
         $method = 'POST';
         $provinces = province::all();
-        $topics = Topic::all();
         $event_types = EventType::all();
         $fields = Fields::all();
         $years = $this->get_list_of_years();
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
-        return view('add_edit_report', compact('route', 'method', 'provinces', 'topics', 'years', 'months', 'event_types', 'fields'));
+        return view('add_edit_report', compact('route', 'method', 'provinces', 'years', 'months', 'event_types', 'fields'));
     }
 
     /**
@@ -99,10 +97,9 @@ class ReportController extends Controller
         $route = route('report.update', $report->id);
         $method = 'PUT';
         $provinces = province::all();
-        $topics = Topic::all();
         $years = $this->get_list_of_years();
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
-        return view('add_edit_report', compact('route', 'method', 'provinces', 'topics', 'years', 'months', 'old'));
+        return view('add_edit_report', compact('route', 'method', 'provinces', 'years', 'months', 'old'));
     }
 
     /**
@@ -125,10 +122,10 @@ class ReportController extends Controller
         }
 
         $report->province = $request->province;
-        $report->topic = $request->topic;
         $report->number_of_male = $request->male;
         $report->number_of_female = $request->female;
         $report->year = $request->year;
+        $report->topic = $request->topic;
         $report->month = $request->month;
         $report->week = $request->week;
         $report->indirect_benificiaries = $request->benificiaries;

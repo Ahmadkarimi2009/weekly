@@ -16,12 +16,6 @@ class FieldsSeeder extends Seeder
     {
         $fields = [
             [
-                'name' =>'Province',
-                'table_name' => 'provinces',
-                'machine_name' => 'province',
-                'data_type' => 'selectbox'
-            ],
-            [
                 'name' =>'Topic',
                 'table_name' => 'topics',
                 'machine_name' => 'topic',

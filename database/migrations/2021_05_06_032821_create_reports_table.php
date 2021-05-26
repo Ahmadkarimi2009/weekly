@@ -15,15 +15,11 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('number_of_male');
-            $table->smallInteger('number_of_female');
             $table->enum('week', [1, 2, 3, 4]);
             $table->enum('month', ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December']);
             $table->year('year');
-            $table->smallInteger('indirect_benificiaries');
+            $table->jsonb('json_data')->nullable();
             $table->unsignedTinyInteger('province');
-            $table->unsignedTinyInteger('topic');
-            $table->string('weekly_report_file')->nullable();
             $table->timestamps();
         });
     }

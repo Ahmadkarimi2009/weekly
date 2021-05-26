@@ -27,7 +27,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/', [ReportController::class, 'index']);
 
     Route::resource('report', ReportController::class);
-    Route::resource('topic', TopicController::class);
     Route::resource('province', ProvinceController::class);
     Route::resource('event_types', EventTypeController::class);
 });

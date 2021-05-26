@@ -7,11 +7,6 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Province</th>
-                        <th scope="col">Topic</th>
-                        <th scope="col">No. Male</th>
-                        <th scope="col">No. Female</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Indirect Benificiaries</th>
                         <th scope="col">Week</th>
                         <th scope="col">Month</th>
                         <th scope="col">Year</th>
@@ -29,17 +24,6 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td>
-                            @foreach ($topics as $topic)
-                                @if ($topic->id == $report->topic)
-                                    {{ $topic->name }}
-                                @endif
-                            @endforeach
-                        </td>
-                        <td>{{ $report->number_of_male }}</td>
-                        <td>{{ $report->number_of_female }}</td>
-                        <td>{{ $report->number_of_male + $report->number_of_female }}</td>
-                        <td>{{ $report->indirect_benificiaries }}</td>
                         <td>{{ $report->week }}</td>
                         <td>{{ $report->month }}</td>
                         <td>{{ $report->year }}</td>

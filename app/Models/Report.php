@@ -12,8 +12,4 @@ class Report extends Model
     public function province() {
         return $this->belongsTo(province::class, 'province');
     }
-
-    public function topic() {
-        return $this->belongsTo(Topic::class, 'topic');
-    }
 }

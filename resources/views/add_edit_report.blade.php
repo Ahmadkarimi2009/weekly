@@ -22,17 +22,12 @@
             </div>
             <div class="col-sm-6">
               <div class="form-group pt-3">
-                <label for="topics_select_box">List of Topics</label>
-                <select class="form-control form-control-lg" name="topic" id="topics_select_box" aria-label="Select Topics Select Box" required>
-                    <option value="">Select Topic</option>
-                    @foreach ($topics as $topic)
-                      <option value="{{ $topic->id }}"
-                        @if (isset($old) && $old->topic == $topic->id)
-                          selected="selected"
-                        @endif
-                      >{{ $topic->name}}</option>
-                    @endforeach
-                  </select>
+                <label for="topics_select_box">Topic</label>
+                <input type="text" class="form-control form-control-lg"
+                  @if (isset($old))
+                    value="{{ $old->topic }}"
+                  @endif
+                name="topic" id="topics_select_box" placeholder="The topic that is discusses" required>
               </div>
             </div>
             <div class="col-sm-6">

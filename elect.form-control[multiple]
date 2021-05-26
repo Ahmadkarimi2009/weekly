@@ -1,0 +1,137 @@
+[33mcommit b4b1a72641761800f2c4a34c8b632601cde43791[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Mon May 10 22:08:01 2021 -0700
+
+    every route is authenticate based now
+
+[33mcommit 2e5e5057fd563aef08b7d8173284bd82457dc64a[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Mon May 10 22:04:23 2021 -0700
+
+    routes are protected with authentication now
+
+[33mcommit ef250c8c0df40a13e7659d35df0518c5aa910c44[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Mon May 10 03:27:22 2021 -0700
+
+    event type model added and seeders created
+
+[33mcommit f2191166a0a8bd589338906d21452232bdbc0167[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Mon May 10 02:34:41 2021 -0700
+
+    fields model and seed and the rest added and working fine
+
+[33mcommit 5a4a0a8c3a5e5c3a0ec68ec73b26c56f480f44e2[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sun May 9 21:50:56 2021 -0700
+
+    Authentication added and then app layout setup completely
+
+[33mcommit b2fb1198c4afdf070f1d1ab35a342ef8d36d8c7e[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sun May 9 03:05:36 2021 -0700
+
+    authentication scaffolding installed
+
+[33mcommit 8ef9228878f5f2b179ec3fdc269bc38a94930b7d[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sun May 9 02:20:39 2021 -0700
+
+    small tweak
+
+[33mcommit 5e21064c84e254ad9b60c03a2f6a96efc608ae03[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sun May 9 02:07:37 2021 -0700
+
+    small tunes to the files
+
+[33mcommit 2ce2721dc2934f7b8d373bda32322189a3a44759[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sun May 9 01:15:18 2021 -0700
+
+    individual column filtering added for the tables
+
+[33mcommit dacf58d36449a5990d5da5b6df2823785022cbe5[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sun May 9 00:57:57 2021 -0700
+
+    Datatable added and working fine
+
+[33mcommit ad12f1a2f855e0403eedf00719de83defd148d28[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sun May 9 00:37:24 2021 -0700
+
+    icons added, menu bar added and working fine
+
+[33mcommit 19c2d6b0d13ec8c2a7bcc9817d6da121a5254c23[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sat May 8 21:43:15 2021 -0700
+
+    session messages and sweelalert setup and working successfully!
+
+[33mcommit 43b1a8f20d1acf1f7bc6a689e70119c6672baab6[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sat May 8 09:52:44 2021 -0700
+
+    province module is fully functional
+
+[33mcommit 8912c503c174f27e77740e54c51398c52d9a425a[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Sat May 8 09:37:55 2021 -0700
+
+    topics module is fully functional
+
+[33mcommit fe913258a2434d28527b774ffa78b281c323b032[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Fri May 7 11:07:34 2021 -0700
+
+    edit and delete of report is up and running
+
+[33mcommit 7b6d30475f33f823022279c837882ca30069bb9e[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Fri May 7 10:23:30 2021 -0700
+
+    file is now being uploaded and download successfully
+
+[33mcommit ad4cbf136f488b7445ba8c5641fe51c04f5179ef[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Fri May 7 07:00:50 2021 -0700
+
+    add form is setup fully and it sends data to the backend
+
+[33mcommit 481fb121014e28725f8a38adef01eb77e3dbe258[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Wed May 5 22:33:47 2021 -0700
+
+    relationships added for the modules
+
+[33mcommit bf04ede33bde6c74453664bb9baea2c46a42c580[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Wed May 5 22:29:30 2021 -0700
+
+    Topic module files added
+
+[33mcommit 5699b4d87a5b69cdb08422cb0bfd38f17534f89d[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Wed May 5 21:54:39 2021 -0700
+
+    reports files added and seeds created
+
+[33mcommit 4cef2959c48c58935606f68c40a59dcebe8aef49[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Wed May 5 20:27:33 2021 -0700
+
+    home page is now displaying the list of provinces
+
+[33mcommit f9c0539c0ae7644a14db6de9827d3d0631008fb4[m
+Author: ahmadkarimi2009@gmail.com <ahmadkarimi2009@gmail.com>
+Date:   Wed May 5 02:36:21 2021 -0700
+
+    bootrap added, home page changed, province added
+
+[33mcommit 709e75f022c857efc5c3d372ea05037b95daee61[m
+Author: Ahmad Karimi <ahmadkarimi2009@gmail.com>
+Date:   Tue May 4 10:49:04 2021 -0700
+
+    first commit

@@ -9,3 +9,7 @@
 .pagination {
     float: right;
 }
+
+select.form-control[multiple] {
+    height: 400px;
+}

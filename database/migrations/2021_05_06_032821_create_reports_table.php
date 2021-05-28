@@ -20,6 +20,7 @@ class CreateReportsTable extends Migration
             $table->year('year');
             $table->jsonb('json_data')->nullable();
             $table->unsignedTinyInteger('province');
+            $table->unsignedTinyInteger('event_type_id');
             $table->timestamps();
         });
     }

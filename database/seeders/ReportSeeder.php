@@ -20,20 +20,23 @@ class ReportSeeder extends Seeder
                 'month' => 4,
                 'year' => 2021,
                 'province' => 1,
+                'event_type_id' => 1
             ],
             [
                 'week' => 2,
                 'month' => 4,
                 'year' => 2021,
                 'province' => 2,
+                'event_type_id' => 1
             ],
             [
                 'week' => 2,
                 'month' => 4,
                 'year' => 2021,
                 'province' => 3,
+                'event_type_id' => 1
             ]
-            ];
+        ];
 
         Report::insert($reports);
     }

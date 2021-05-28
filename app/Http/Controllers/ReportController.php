@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
-use App\Models\province;
+use App\Models\Province;
 use App\Models\Topic;
 use App\Models\Fields;
 use App\Models\EventType;
@@ -21,8 +21,10 @@ class ReportController extends Controller
     public function index()
     {
         $reports = Report::all();
-        $provinces = province::all();
+        $provinces = Province::all();
+        $event_types = EventType::all();
 
+        dd($reports[6]->json_data);
         return view('reports', compact('reports', 'provinces'));
     }
 
@@ -36,7 +38,7 @@ class ReportController extends Controller
     //  dd(date('F', strtotime('2020-12-23')));   
         $route = route('report.store');
         $method = 'POST';
-        $provinces = province::all();
+        $provinces = Province::all();
         $event_types = EventType::all();
         $fields = Fields::all();
         $years = $this->get_list_of_years();
@@ -52,21 +54,26 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('weekly_report')) {
-            $name = strtotime(date('Y-m-dTH:i:s')) . $request->file('weekly_report')->getClientOriginalName();
-            $weekly_report_file = $request->file('weekly_report')->storeAs('weekly_reports', $name);
-        }
+        $validated = $request->validate([
+            'province' => 'required',
+            'event_type' => 'required',
+            'year' => 'required',
+            'month' => 'required',
+            'week' => 'required',
+            'json_data' => 'required'
+        ]);
+        // if ($request->hasFile('weekly_report')) {
+        //     $name = strtotime(date('Y-m-dTH:i:s')) . $request->file('weekly_report')->getClientOriginalName();
+        //     $weekly_report_file = $request->file('weekly_report')->storeAs('weekly_reports', $name);
+        // }
 
         $report = new Report;
         $report->province = $request->province;
-        $report->topic = $request->topic;
-        $report->number_of_male = $request->male;
-        $report->number_of_female = $request->female;
         $report->year = $request->year;
         $report->month = $request->month;
         $report->week = $request->week;
-        $report->weekly_report_file = $weekly_report_file;
-        $report->indirect_benificiaries = $request->benificiaries;
+        $report->event_type_id = $request->event_type;
+        $report->json_data = json_decode($request->json_data);
 
         $report->save();
 
@@ -96,7 +103,7 @@ class ReportController extends Controller
         $old = $report;
         $route = route('report.update', $report->id);
         $method = 'PUT';
-        $provinces = province::all();
+        $provinces = Province::all();
         $years = $this->get_list_of_years();
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
         return view('add_edit_report', compact('route', 'method', 'provinces', 'years', 'months', 'old'));
@@ -111,24 +118,21 @@ class ReportController extends Controller
      */
     public function update(Request $request, Report $report)
     {
-        if ($request->hasFile('weekly_report')) {
-            // Delete previously uploaded file.
-            Storage::delete($report->weekly_report_file);
-            $name = strtotime(date('Y-m-dTH:i:s')) . $request->file('weekly_report')->getClientOriginalName();
-            $weekly_report_file = $request->file('weekly_report')->storeAs('weekly_reports', $name);
+        // if ($request->hasFile('weekly_report')) {
+        //     // Delete previously uploaded file.
+        //     Storage::delete($report->weekly_report_file);
+        //     $name = strtotime(date('Y-m-dTH:i:s')) . $request->file('weekly_report')->getClientOriginalName();
+        //     $weekly_report_file = $request->file('weekly_report')->storeAs('weekly_reports', $name);
 
-            // Update the record based on the new uploaded file.
-            $report->weekly_report_file = $weekly_report_file;
-        }
+        //     // Update the record based on the new uploaded file.
+        //     $report->weekly_report_file = $weekly_report_file;
+        // }
 
         $report->province = $request->province;
-        $report->number_of_male = $request->male;
-        $report->number_of_female = $request->female;
         $report->year = $request->year;
-        $report->topic = $request->topic;
         $report->month = $request->month;
         $report->week = $request->week;
-        $report->indirect_benificiaries = $request->benificiaries;
+        $report->json_data = $request->json_data;
 
         $report->save();
 
@@ -158,5 +162,13 @@ class ReportController extends Controller
         }
 
         return $years;
+    }
+
+    public function event_type(EventType $event_type) {
+        $reports = Report::where('event_type_id', $event_type->id)->get();
+        $provinces = Province::all();
+        $fields = Fields::all();
+
+        return view('reports', compact('reports', 'provinces', 'fields', 'event_type'));
     }
 }

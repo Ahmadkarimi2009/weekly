@@ -23,10 +23,13 @@ Auth::routes();
 
 
 Route::group(['middleware' => ['web', 'auth']], function () {
-    Route::get('/home', [ReportController::class, 'index'])->name('home');
-    Route::get('/', [ReportController::class, 'index']);
+    Route::get('/home', [ProvinceController::class, 'index'])->name('home');
+    Route::get('/', [ProvinceController::class, 'index']);
 
     Route::resource('report', ReportController::class);
     Route::resource('province', ProvinceController::class);
     Route::resource('event_types', EventTypeController::class);
+
+
+    Route::get('/reports/{event_type}', [ReportController::class, 'event_type']);
 });

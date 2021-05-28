@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\province;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Session;
 
@@ -15,7 +15,7 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        $provinces = province::all();
+        $provinces = Province::all();
         return view('provinces', compact('provinces'));
     }
 
@@ -42,7 +42,7 @@ class ProvinceController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:provinces',
         ]);
-        $province = new province;
+        $province = new Province;
         $province->name = $request->name;
         $province->save();
 
@@ -56,7 +56,7 @@ class ProvinceController extends Controller
      * @param  \App\Models\province  $province
      * @return \Illuminate\Http\Response
      */
-    public function show(province $province)
+    public function show(Province $province)
     {
         //
     }
@@ -67,7 +67,7 @@ class ProvinceController extends Controller
      * @param  \App\Models\province  $province
      * @return \Illuminate\Http\Response
      */
-    public function edit(province $province)
+    public function edit(Province $province)
     {
         $route = route('province.update', $province->id);
         $method = 'PUT';
@@ -82,7 +82,7 @@ class ProvinceController extends Controller
      * @param  \App\Models\province  $province
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, province $province)
+    public function update(Request $request, Province $province)
     {
 
         $province->name = $request->name;
@@ -97,7 +97,7 @@ class ProvinceController extends Controller
      * @param  \App\Models\province  $province
      * @return \Illuminate\Http\Response
      */
-    public function destroy(province $province)
+    public function destroy(Province $province)
     {
         $province->delete();
         Session::flash('message', ["Deletion Successful!", "Province Deleted Successfully!", "success"]);

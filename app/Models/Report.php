@@ -12,4 +12,13 @@ class Report extends Model
     public function province() {
         return $this->belongsTo(province::class, 'province');
     }
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'json_data' => 'array',
+    ];
 }

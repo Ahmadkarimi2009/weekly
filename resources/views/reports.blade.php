@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div class="m-5">
+        <div class="alert alert-success" role="alert">
+            <div>{{ $event_type->name }}</div>
+        </div>
+        
         <table class="table table-bordered" id="reports_table">
             <thead>
                 <tr>
@@ -67,34 +71,27 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                   
                 </tr>
             </tfoot>
         </table>
     </div>
 @endsection
 
-<script>
-    var fields = {!! $fields !!};
-    var event_type = {!! $event_type !!};
-    var provinces = {!! $provinces !!};
-    var months = {!! json_encode($months) !!};
-    var years = {!! json_encode($years) !!};
-
-</script>
-
-@isset($old)
+@section('js-scripts')
+    <script src="{{ asset('/js/snippet.js') }}"></script>
     <script>
-        var old_entity = {!! $old_entity !!};
+        var fields = {!! $fields !!};
+        var event_type = {!! $event_type !!};
+        var provinces = {!! $provinces !!};
+        var months = {!! json_encode($months) !!};
+        var years = {!! json_encode($years) !!};
+
     </script>
-@endisset
+
+    @isset($old)
+        <script>
+            var old_entity = {!! $old_entity !!};
+        </script>
+    @endisset
+@endsection

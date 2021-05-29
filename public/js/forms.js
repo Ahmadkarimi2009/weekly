@@ -81,6 +81,27 @@ $(document).on('change', '#event_type_select_box', function(){
                 </div>
             `;
         }
+        else if (actual_field.data_type == 'selectbox') {
+
+            let options_list = "";
+            for (const key in provinces) {
+                if (Object.hasOwnProperty.call(provinces, key)) {
+                    const element = provinces[key];
+                    options_list += '<option value="' + element.id + '">' + element.name + '</option>';
+                }
+            }
+            input_tag += `
+                <div class="col-sm-6">
+                    <div class="form-group pt-3">
+                        <label for="with_province_select_box">With Province</label>
+                        <select class="form-control form-control-lg" name="with_province" id="with_province_select_box" aria-label="Select Provinces Select Box" required>
+                            <option value="">Select Province</option>
+                            ${options_list}
+                        </select>
+                    </div>
+                </div>
+            `;
+        }
         else {
             // Generate a field for the form based on this actual field.
             input_tag += `

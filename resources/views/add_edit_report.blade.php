@@ -117,4 +117,5 @@
 <script>
   var fields = {!! $fields !!};
   var event_types = {!! $event_types !!};
+  var provinces = {!! $provinces !!};
 </script>

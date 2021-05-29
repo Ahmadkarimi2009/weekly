@@ -65,9 +65,9 @@ class FieldsSeeder extends Seeder
             ],
             [
                 'name' => 'Topic',
-                'table_name' => 'topics',
+                'table_name' => '',
                 'machine_name' => 'topic',
-                'data_type' => 'selectbox'
+                'data_type' => 'text'
             ],
             [
                 'name' =>'Number of Male',

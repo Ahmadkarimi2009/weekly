@@ -91,7 +91,7 @@ $(document).on('change', '#event_type_select_box', function(){
                 }
             }
             input_tag += `
-                <div class="col-sm-6">
+                <div class="col-sm-6 event_type_related_fields">
                     <div class="form-group pt-3">
                         <label for="with_province_select_box">With Province</label>
                         <select class="form-control form-control-lg" name="with_province" id="with_province_select_box" aria-label="Select Provinces Select Box" required>

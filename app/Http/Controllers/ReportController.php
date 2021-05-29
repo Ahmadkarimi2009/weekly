@@ -79,7 +79,7 @@ class ReportController extends Controller
         $report->save();
 
         Session::flash('message', ['Insertion Successful!', 'Province Store Successfully!', 'success']);
-        return redirect()->route('report.index');
+        return redirect()->route('activities', $request->event_type);
     }
 
     /**
@@ -134,11 +134,12 @@ class ReportController extends Controller
         $report->month = $request->month;
         $report->week = $request->week;
         $report->json_data = $request->json_data;
+        $report->event_type_id = $request->event_type;
 
         $report->save();
 
         Session::flash('message', ['Update Successful!', 'Province Updated Successfully!', 'success']);
-        return redirect()->route('report.index');
+        return redirect()->route('activities', $event_type_id);
     }
 
     /**

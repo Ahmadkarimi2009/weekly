@@ -58,13 +58,7 @@
                 <select class="form-control form-control-lg" name="month" id="months_select_box" aria-label="Select Month Select Box" required>
                     <option value="">Select Month</option>
                     @foreach ($months as $month)
-                      <option value="{{ $month }}"
-                        @if (isset($old) && $old->month == $month)
-                          selected="selected"
-                        @elseif (!isset($old) && $month == date('F'))
-                            selected="selected"
-                        @endif
-                      >{{ $month}}</option>
+                      <option value="{{ $month }}" >{{ $month}}</option>
                     @endforeach
                 </select>
               </div>
@@ -74,26 +68,10 @@
                 <label for="weeks_select_box">List of Weeks</label>
                 <select class="form-control form-control-lg" name="week" id="weeks_select_box" aria-label="Select Week Select Box" required>
                     <option value="">Select Week</option>
-                    <option value="1"
-                      @if (isset($old) && $old->year == 1)
-                          selected="selected"
-                      @endif
-                    >1</option>
-                    <option value="2"
-                      @if (isset($old) && $old->week == 2)
-                          selected="selected"
-                      @endif
-                    >2</option>
-                    <option value="3"
-                      @if (isset($old) && $old->week == 3)
-                          selected="selected"
-                      @endif
-                    >3</option>
-                    <option value="4"
-                      @if (isset($old) && $old->week == 4)
-                          selected="selected"
-                      @endif
-                    >4</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" >3</option>
+                    <option value="4" >4</option>
                 </select>
               </div>
             </div>
@@ -118,4 +96,14 @@
   var fields = {!! $fields !!};
   var event_types = {!! $event_types !!};
   var provinces = {!! $provinces !!};
+  var months = {!! json_encode($months) !!};
+  var years = {!! json_encode($years) !!};
+
+  console.log(years);
 </script>
+
+@isset($old)
+  <script>
+    var old_entity = {!! $old_entity !!};
+  </script>
+@endisset

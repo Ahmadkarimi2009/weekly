@@ -21,7 +21,7 @@ class EventTypeSeeder extends Seeder
             ],
             [
                 'name' =>'Moderated Socio-Cultural Dialogues',
-                'fields' => '[1,9,10,11,12]',
+                'fields' => '[1,9,10,11,12,26]',
             ],
             [
                 'name' =>'Online Cultural Dialogues',
@@ -29,11 +29,11 @@ class EventTypeSeeder extends Seeder
             ],
             [
                 'name' =>'Support Groups (PSC)',
-                'fields' => '[3,10,11,12]',
+                'fields' => '[3,10,11,12,26]',
             ],
             [
                 'name' =>'Thematic Events',
-                'fields' => '[9,10,11,12]',
+                'fields' => '[9,10,11,12,26]',
             ],
             [
                 'name' =>'Online Events',
@@ -41,43 +41,43 @@ class EventTypeSeeder extends Seeder
             ],
             [
                 'name' =>'New Voluteers Joined',
-                'fields' => '[9,10,11,12]',
+                'fields' => '[9,10,11,12,26]',
             ],
             [
                 'name' =>'Meeting With Volunteers',
-                'fields' => '[9,10,11,12]',
+                'fields' => '[9,10,11,12,26]',
             ],
             [
                 'name' =>'New Care Givers',
-                'fields' => '[9,10,11,12]',
+                'fields' => '[9,10,11,12,26]',
             ],
             [
                 'name' =>'Care Givers Training',
-                'fields' => '[9,10,11,12]',
+                'fields' => '[9,10,11,12,26]',
             ],
             [
                 'name' =>'Support group held by Care Giver',
-                'fields' => '[9,10,11,12]',
+                'fields' => '[9,10,11,12,26]',
             ],
             [
                 'name' =>'Number of teachers recruited for training',
-                'fields' => '[9,10,11,12]',
+                'fields' => '[9,10,11,12,26]',
             ],
             [
                 'name' =>'Teacher trainings',
-                'fields' => '[9,10,11,12]',
+                'fields' => '[9,10,11,12,26]',
             ],
             [
                 'name' =>'Support groups (PSC)',
-                'fields' => '[3,10,11,12]',
+                'fields' => '[3,10,11,12,26]',
             ],
             [
                 'name' =>'Life Skills Group (PSCW)',
-                'fields' => '[3,10,11,12]',
+                'fields' => '[3,10,11,12,26]',
             ],
             [
                 'name' =>'Online Counseling Sessions',
-                'fields' => '[14,10,11,12]',
+                'fields' => '[14,10,11,12,26]',
             ]
         ];
         EventType::insert($fields);

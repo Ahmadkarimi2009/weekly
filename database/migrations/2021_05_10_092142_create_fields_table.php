@@ -19,6 +19,7 @@ class CreateFieldsTable extends Migration
             $table->string('data_type');
             $table->string('machine_name');
             $table->string('table_name')->nullable();
+            $table->string('searchable')->nullable();
             $table->timestamps();
         });
     }

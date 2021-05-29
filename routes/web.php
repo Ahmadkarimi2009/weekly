@@ -5,6 +5,7 @@ use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\EventTypeController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,8 @@ Auth::routes();
 
 
 Route::group(['middleware' => ['web', 'auth']], function () {
-    Route::get('/home', [ProvinceController::class, 'index'])->name('home');
-    Route::get('/', [ProvinceController::class, 'index']);
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index']);
 
     Route::resource('report', ReportController::class);
     Route::resource('province', ProvinceController::class);
@@ -32,4 +33,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');
+    Route::get('/activities/province/{province_id}/{event_type_id}', [ReportController::class, 'province_activity'])->name('activities.province');
 });

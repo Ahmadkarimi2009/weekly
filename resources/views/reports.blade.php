@@ -2,7 +2,7 @@
 @section('content')
     <div class="m-5">
         <div class="alert alert-success" role="alert">
-            <div>{{ $event_type->name }}</div>
+            <div>{{ $event_type->name }} -> {{ $province }}</div>
         </div>
         
         <table class="table table-bordered" id="reports_table">

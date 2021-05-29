@@ -172,8 +172,22 @@ class ReportController extends Controller
         $provinces = Province::all();
         $fields = Fields::all();
         $years = $this->get_list_of_years();
+        $province = "All Provinces";
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
 
-        return view('reports', compact('reports', 'provinces', 'fields', 'event_type', 'years', 'months'));
+        return view('reports', compact('reports', 'provinces', 'fields', 'event_type', 'years', 'months', 'province'));
+    }
+
+    public function province_activity($province_id, $event_type_id) {
+
+        $province = Province::find($province_id)->name;
+        $event_type = EventType::find($event_type_id);
+        $reports = Report::where(['event_type_id' => $event_type_id, 'province' => $province_id])->get();
+        $provinces = Province::all();
+        $fields = Fields::all();
+        $years = $this->get_list_of_years();
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+
+        return view('reports', compact('reports', 'provinces', 'fields', 'event_type', 'years', 'months', 'province'));
     }
 }

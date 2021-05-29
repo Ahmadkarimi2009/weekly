@@ -18,7 +18,7 @@ class ProvinceSeeder extends Seeder
             ['name' =>'Kabul'],
             ['name' =>'Laghman'],
             ['name' =>'Jawzjan'],
-            ['name' =>'Mazar'],
+            ['name' =>'Balkh'],
             ['name' =>'Kandahar'],
             ['name' =>'Nangarhar'],
             ['name' =>'Badakhshan'],

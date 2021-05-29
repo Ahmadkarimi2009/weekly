@@ -170,7 +170,9 @@ class ReportController extends Controller
         $reports = Report::where('event_type_id', $event_type_id)->get();
         $provinces = Province::all();
         $fields = Fields::all();
+        $years = $this->get_list_of_years();
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
 
-        return view('reports', compact('reports', 'provinces', 'fields', 'event_type'));
+        return view('reports', compact('reports', 'provinces', 'fields', 'event_type', 'years', 'months'));
     }
 }

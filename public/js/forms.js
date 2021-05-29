@@ -102,17 +102,44 @@ $(document).on('change', '#event_type_select_box', function(){
                 </div>
             `;
         }
-        else {
+        else if (actual_field.data_type == 'textarea') {
             // Generate a field for the form based on this actual field.
             input_tag += `
-                <div class="col-sm-6 event_type_related_fields">
+                <div class="col-sm-12 event_type_related_fields">
                     <div class="form-group pt-3">
                         <label for="${actual_field.machine_name}">${actual_field.name}</label>
-                        <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
-                        name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required value="11">
+                        <textarea class="form-control" id="${actual_field.machine_name}" rows="4" name="${actual_field.machine_name}">Default checkboxes and radios are improved upon with the help of .form-check, a single class for both input types that improves the layout and behavior of their HTML elements. Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
+                        </textarea>
                     </div>
                 </div>
             `;
+        }
+        else {
+            if (actual_field.machine_name == 'topic') {
+                // Generate a field for the form based on this actual field.
+                input_tag += `
+                    <div class="col-sm-12 event_type_related_fields">
+                        <div class="form-group pt-3">
+                            <label for="${actual_field.machine_name}">${actual_field.name}</label>
+                            <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
+                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required value="11">
+                        </div>
+                    </div>
+                `;
+            }
+            else {
+                // Generate a field for the form based on this actual field.
+                input_tag += `
+                    <div class="col-sm-6 event_type_related_fields">
+                        <div class="form-group pt-3">
+                            <label for="${actual_field.machine_name}">${actual_field.name}</label>
+                            <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
+                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required value="11">
+                        </div>
+                    </div>
+                `;
+            }
+           
         }
         
     });
@@ -159,6 +186,10 @@ $('.add_edit_report_form_submit_btn').on('click', function(e){
         else {
             json_data[$(this).attr('name')] = $(this).val();
         }
+    });
+
+    $('.event_type_related_fields textarea').each(function(){
+        json_data[$(this).attr('name')] = $(this).val();
     });
 
     $('#json_data_input_field').val(JSON.stringify(json_data));

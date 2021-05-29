@@ -99,7 +99,6 @@
   var months = {!! json_encode($months) !!};
   var years = {!! json_encode($years) !!};
 
-  console.log(years);
 </script>
 
 @isset($old)

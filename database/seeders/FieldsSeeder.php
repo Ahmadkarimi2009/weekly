@@ -142,10 +142,10 @@ class FieldsSeeder extends Seeder
                 'searchable' => 'true'
             ],
             [
-                'name' =>'Reports',
+                'name' =>'Details',
                 'table_name' => '',
-                'machine_name' => 'reports',
-                'data_type' => 'text',
+                'machine_name' => 'details',
+                'data_type' => 'textarea',
                 'searchable' => ''
             ],
             [

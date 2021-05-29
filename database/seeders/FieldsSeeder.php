@@ -16,7 +16,55 @@ class FieldsSeeder extends Seeder
     {
         $fields = [
             [
-                'name' =>'Topic',
+                'name' => 'In SCC or Field',
+                'table_name' => '',
+                'machine_name' => 'in_scc_or_field',
+                'data_type' => 'checkbox'
+            ],
+            [
+                'name' => 'Partner/Authority',
+                'table_name' => '',
+                'machine_name' => 'partner_authority',
+                'data_type' => 'text',
+            ],
+            [
+                'name' => 'Group Topic',
+                'table_name' => '',
+                'machine_name' => 'group_topic',
+                'data_type' => 'text',
+            ],
+            [
+                'name' => 'Male Beneficiaries',
+                'table_name' => '',
+                'machine_name' => 'male_beneficiaries',
+                'data_type' => 'number',
+            ],
+            [
+                'name' => 'Female Beneficiaries',
+                'table_name' => '',
+                'machine_name' => 'female_eneficiaries',
+                'data_type' => 'number',
+            ],
+            [
+                'name' => 'Total Beneficiaries',
+                'table_name' => '',
+                'machine_name' => 'total_eneficiaries',
+                'data_type' => 'number',
+            ],
+            [
+                'name' => 'Project of male or female Young Leaders?',
+                'table_name' => '',
+                'machine_name' => 'project_of_male_or_female_young_leaders',
+                'data_type' => 'text',
+            ],
+            [
+                'name' => 'Project of male or female volunteers?',
+                'table_name' => '',
+                'machine_name' => 'project_of_male_or_female_volunteers',
+                'data_type' => 'text',
+            ],
+            [
+                'name' => 'Topic',
                 'table_name' => 'topics',
                 'machine_name' => 'topic',
                 'data_type' => 'selectbox'
@@ -46,9 +94,9 @@ class FieldsSeeder extends Seeder
                 'data_type' => 'number'
             ],
             [
-                'name' =>'Number of Session',
+                'name' =>'Number of Sessions',
                 'table_name' => '',
-                'machine_name' => 'number_of_session',
+                'machine_name' => 'number_of_sessions',
                 'data_type' => 'number'
             ],
             [
@@ -93,6 +141,30 @@ class FieldsSeeder extends Seeder
                 'machine_name' => 'activity',
                 'data_type' => 'text'
             ],
+            [
+                'name' =>'No. of online counseling sessions arranged in container',
+                'table_name' => '',
+                'machine_name' => 'no_of_online_counseling_sessions_arranged_in_container',
+                'data_type' => 'number'
+            ],
+            [
+                'name' =>'No. of online counseling sessions',
+                'table_name' => '',
+                'machine_name' => 'no_of_online_counseling_sessions',
+                'data_type' => 'number'
+            ],
+            [
+                'name' =>'No. of sessions for male clients',
+                'table_name' => '',
+                'machine_name' => 'no_of_sessions_for_male_clients',
+                'data_type' => 'number'
+            ],
+            [
+                'name' =>'No. of sessions for female clients',
+                'table_name' => '',
+                'machine_name' => 'no_of_sessions_for_male_clients',
+                'data_type' => 'number'
+            ]
         ];
 
         Fields::insert($fields);

@@ -62,16 +62,38 @@ $(document).on('change', '#event_type_select_box', function(){
         // Extra classes in case the field is for totals.
         let extra_classes = add_necessary_classes_for_totals(actual_field);
 
-        // Generate a field for the form based on this actual field.
-        input_tag += `
-            <div class="col-sm-6 event_type_related_fields">
-                <div class="form-group pt-3">
-                    <label for="${actual_field.machine_name}">${actual_field.name}</label>
-                    <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
-                    name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required>
+        if (actual_field.data_type == 'checkbox') {
+            input_tag += `
+                <div class="col-sm-12 event_type_related_fields">
+                    <label>In SCC or Field</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="in_scc_or_field" id="in_scc" value="SCC" checked>
+                        <label class="form-check-label" for="in_scc">
+                            In SCC
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="in_scc_or_field" id="in_field" value="Field">
+                        <label class="form-check-label" for="in_field">
+                            In Field
+                        </label>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
+        else {
+            // Generate a field for the form based on this actual field.
+            input_tag += `
+                <div class="col-sm-6 event_type_related_fields">
+                    <div class="form-group pt-3">
+                        <label for="${actual_field.machine_name}">${actual_field.name}</label>
+                        <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
+                        name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required value="11">
+                    </div>
+                </div>
+            `;
+        }
+        
     });
 
     // Add the generated fields to the form.
@@ -105,8 +127,17 @@ function add_necessary_classes_for_totals(actual_field) {
 
 $('.add_edit_report_form_submit_btn').on('click', function(e){
     let json_data = new Object;
+    
     $('.event_type_related_fields input').each(function(){
-        json_data[$(this).attr('name')] = $(this).val();
+
+        if ($(this).attr('type') == 'radio') {
+            if ($(this).is(':checked')) {
+                json_data[$(this).attr('name')] = $(this).val();
+            }
+        }
+        else {
+            json_data[$(this).attr('name')] = $(this).val();
+        }
     });
 
     $('#json_data_input_field').val(JSON.stringify(json_data));

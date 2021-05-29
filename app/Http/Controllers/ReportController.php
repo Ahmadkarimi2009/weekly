@@ -20,6 +20,7 @@ class ReportController extends Controller
      */
     public function index()
     {
+        return redirect()->route('activities');
         $reports = Report::all();
         $provinces = Province::all();
         $event_types = EventType::all();
@@ -89,7 +90,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        return redirect()->route('activities');
     }
 
     /**
@@ -164,8 +165,9 @@ class ReportController extends Controller
         return $years;
     }
 
-    public function event_type(EventType $event_type) {
-        $reports = Report::where('event_type_id', $event_type->id)->get();
+    public function event_type($event_type_id = 1) {
+        $event_type = EventType::find($event_type_id);
+        $reports = Report::where('event_type_id', $event_type_id)->get();
         $provinces = Province::all();
         $fields = Fields::all();
 

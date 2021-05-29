@@ -31,5 +31,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('event_types', EventTypeController::class);
 
 
-    Route::get('/reports/{event_type}', [ReportController::class, 'event_type']);
+    Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');
 });

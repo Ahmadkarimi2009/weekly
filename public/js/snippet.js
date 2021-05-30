@@ -45,6 +45,31 @@ $(document).ready(function() {
         }
     });
 
+    function add_statistics() {
+        let array_of_totals_columns = ['Number of Male', 'Number of Female', 'Total', 'Number of Sessions', 'Male Beneficiaries', 'Female Beneficiaries', 'Total Beneficiaries'];
+            $('#statistics_section').empty();
+
+            $('table thead tr th').each(function(index){
+                if($.inArray($(this).text(), array_of_totals_columns) !== -1) {
+                    let column_title = $(this).text();
+                    let totals_each_row = reports_table.column(index, {search: 'applied'} ).data().toArray();
+
+                    let overall_total = 0;
+                    for (var i = 0; i < totals_each_row.length; i++) {
+                        overall_total += totals_each_row[i] << 0;
+                    }
+
+                    $('#statistics_section').append(`
+                        <div class="col-sm-3 ">
+                            <div class="badge badge-success p-2 w-100">
+                                <h3>${column_title}</h3>
+                                ${overall_total}
+                            </div>
+                        </div>
+                    `);
+                }
+            })
+    }
 
     /**
      * 
@@ -73,7 +98,9 @@ $(document).ready(function() {
         $('table tfoot tr').append('<th scope="col"></th>')
     }
 
-    $('#reports_table').DataTable({
+    let reports_table = $('#reports_table').on('init.dt', function(e){
+        console.log(e);
+    }).DataTable({
         initComplete: function () {
             this.api().columns(searchable_fields).every( function () {
                 var column = this;
@@ -97,5 +124,6 @@ $(document).ready(function() {
     });
 
     $('table tfoot th select').addClass('form-control');
+    $('#reports_table').on( 'draw.dt', add_statistics());
 
 });

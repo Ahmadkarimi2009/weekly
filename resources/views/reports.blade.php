@@ -5,6 +5,9 @@
             <div>{{ $event_type->name }} -> {{ $province }}</div>
         </div>
         
+        <div id="statistics_section" class="row">
+
+        </div>
         <table class="table table-bordered" id="reports_table">
             <thead>
                 <tr>

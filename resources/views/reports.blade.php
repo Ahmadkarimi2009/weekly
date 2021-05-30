@@ -83,13 +83,13 @@
 
 @section('js-scripts')
     <script src="{{ asset('/js/snippet.js') }}"></script>
-    <script src="{{ asset('/js/datatable_buttons.js') }}"></script>
-    <script src="{{ asset('/js/jszip.js') }}"></script>
-    <script src="{{ asset('/js/pdfmake.js') }}"></script>
-    <script src="{{ asset('/js/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('/js/html5_buttons.js') }}"></script>
-    <script src="{{ asset('/js/print_button.js') }}"></script>
-    <script src="{{ asset('/js/colvis.js') }}"></script>
+    <script src="{{ asset('/js/datatable/datatable_buttons.js') }}"></script>
+    <script src="{{ asset('/js/datatable/jszip.js') }}"></script>
+    <script src="{{ asset('/js/datatable/pdfmake.js') }}"></script>
+    <script src="{{ asset('/js/datatable/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('/js/datatable/html5_buttons.js') }}"></script>
+    <script src="{{ asset('/js/datatable/print_button.js') }}"></script>
+    <script src="{{ asset('/js/datatable/colvis.js') }}"></script>
     <script>
         var fields = {!! $fields !!};
         var event_type = {!! $event_type !!};

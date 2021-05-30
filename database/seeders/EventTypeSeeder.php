@@ -25,7 +25,7 @@ class EventTypeSeeder extends Seeder
             ],
             [
                 'name' =>'Online Cultural Dialogues',
-                'fields' => '[15,9,14,10,11,12,19]',
+                'fields' => '[15,9,14,10,11,12,26,19]',
             ],
             [
                 'name' =>'Thematic Events',

@@ -36,8 +36,8 @@
 
     <script src="{{ asset('/js/jquery.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('/js/datatable.js') }}"></script>
-    <script src="{{ asset('/js/datatable_bootstrap.js') }}"></script>
+    <script src="{{ asset('/js/datatable/datatable.js') }}"></script>
+    <script src="{{ asset('/js/datatable/datatable_bootstrap.js') }}"></script>
     <script src="{{ asset('/js/sweetalert.js') }}"></script>
     <script src="{{ asset('/js/forms.js') }}"></script>
     @yield('js-scripts')

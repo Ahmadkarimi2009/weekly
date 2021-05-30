@@ -94,7 +94,7 @@ $(document).on('change', '#event_type_select_box', function(){
                 <div class="col-sm-6 event_type_related_fields">
                     <div class="form-group pt-3">
                         <label for="with_province_select_box">With Province</label>
-                        <select class="form-control form-control-lg" name="with_province" id="with_province_select_box" aria-label="Select Provinces Select Box" required>
+                        <select class="form-control form-control-lg" name="with_province" id="with_province_select_box" aria-label="Select Provinces Select Box" required="required">
                             <option value="">Select Province</option>
                             ${options_list}
                         </select>
@@ -108,7 +108,7 @@ $(document).on('change', '#event_type_select_box', function(){
                 <div class="col-sm-12 event_type_related_fields">
                     <div class="form-group pt-3">
                         <label for="${actual_field.machine_name}">${actual_field.name}</label>
-                        <textarea class="form-control" id="${actual_field.machine_name}" rows="4" name="${actual_field.machine_name}">Default checkboxes and radios are improved upon with the help of .form-check, a single class for both input types that improves the layout and behavior of their HTML elements. Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
+                        <textarea class="form-control" id="${actual_field.machine_name}" rows="4" name="${actual_field.machine_name}">
                         </textarea>
                     </div>
                 </div>
@@ -122,7 +122,7 @@ $(document).on('change', '#event_type_select_box', function(){
                         <div class="form-group pt-3">
                             <label for="${actual_field.machine_name}">${actual_field.name}</label>
                             <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
-                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required value="11">
+                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required="required" value="">
                         </div>
                     </div>
                 `;
@@ -134,7 +134,7 @@ $(document).on('change', '#event_type_select_box', function(){
                         <div class="form-group pt-3">
                             <label for="${actual_field.machine_name}">${actual_field.name}</label>
                             <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
-                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required value="11">
+                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required="required" value="">
                         </div>
                     </div>
                 `;

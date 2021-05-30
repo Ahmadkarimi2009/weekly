@@ -5,7 +5,7 @@
             <div>{{ $event_type->name }} -> {{ $province }}</div>
         </div>
         
-        <div id="statistics_section" class="row">
+        <div id="statistics_section" class="row pl-2 pr-2">
 
         </div>
         <table class="table table-bordered" id="reports_table">
@@ -83,6 +83,13 @@
 
 @section('js-scripts')
     <script src="{{ asset('/js/snippet.js') }}"></script>
+    <script src="{{ asset('/js/datatable_buttons.js') }}"></script>
+    <script src="{{ asset('/js/jszip.js') }}"></script>
+    <script src="{{ asset('/js/pdfmake.js') }}"></script>
+    <script src="{{ asset('/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('/js/html5_buttons.js') }}"></script>
+    <script src="{{ asset('/js/print_button.js') }}"></script>
+    <script src="{{ asset('/js/colvis.js') }}"></script>
     <script>
         var fields = {!! $fields !!};
         var event_type = {!! $event_type !!};

@@ -22,6 +22,8 @@
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/navbar.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/datatable_bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/datatable_buttons.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

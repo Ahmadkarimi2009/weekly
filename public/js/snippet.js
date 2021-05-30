@@ -60,11 +60,10 @@ $(document).ready(function() {
                     }
 
                     $('#statistics_section').append(`
-                        <div class="col-sm-3 ">
-                            <div class="badge badge-success p-2 w-100">
-                                <h3>${column_title}</h3>
-                                ${overall_total}
-                            </div>
+                        
+                        <div class="bg-light p-4 m-2 rounded statistics_blocks">
+                            <h3>${column_title}</h3>
+                            <h1 class="text-danger">${overall_total}</h1>
                         </div>
                     `);
                 }
@@ -99,7 +98,7 @@ $(document).ready(function() {
     }
 
     let reports_table = $('#reports_table').on('init.dt', function(e){
-        console.log(e);
+
     }).DataTable({
         initComplete: function () {
             this.api().columns(searchable_fields).every( function () {
@@ -120,10 +119,49 @@ $(document).ready(function() {
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 });
             });
-        }
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            'colvis'
+        ]
     });
 
     $('table tfoot th select').addClass('form-control');
     $('#reports_table').on( 'draw.dt', add_statistics());
+
+
+    $('.dt-buttons button').addClass('btn btn-outline-success').removeClass('dt-button buttons-columnVisibility');
+
+    // $('.dt-buttons .dt-button-collection button').addClass('btn btn-outline-success').removeClass('dt-button buttons-columnVisibility');
 
 });

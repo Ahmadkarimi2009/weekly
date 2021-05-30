@@ -71,17 +71,21 @@ a {
 
 #dropdown-menu1 {
     position: absolute;
-    left: 120px;
+    left: 180px;
 }
 
 #dropdown-menu2 {
     position: absolute;
-    left: 240px;
+    left: 300px;
 }
 
 #dropdown-menu3 {
     position: absolute;
-    left: 375px;
+    left: 435px;
+}
+#dropdown-menu4 {
+    position: absolute;
+    left: 750px;
 }
 
 .tab {
@@ -99,6 +103,10 @@ a {
 
 .dropdown-item:hover {
     background-color: inherit
+}
+
+.navbar-nav .nav-item {
+    white-space: nowrap;
 }
 
 @media (max-width: 767px) {

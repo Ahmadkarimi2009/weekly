@@ -156,10 +156,10 @@ class FieldsSeeder extends Seeder
                 'searchable' => 'true'
             ],
             [
-                'name' =>'Activity',
+                'name' =>'Activity Details',
                 'table_name' => '',
-                'machine_name' => 'activity',
-                'data_type' => 'text',
+                'machine_name' => 'activity_details',
+                'data_type' => 'textarea',
                 'searchable' => 'true'
             ],
             [

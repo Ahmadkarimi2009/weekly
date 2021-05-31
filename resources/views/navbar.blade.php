@@ -174,6 +174,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="" id="" role="button" ">Success Stories</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" id="" role="button" ">Conference</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" id="" role="button" ">Blog</a>
+                </li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto flex-row-reverse">

@@ -97,9 +97,7 @@ $(document).ready(function() {
         $('table tfoot tr').append('<th scope="col"></th>')
     }
 
-    let reports_table = $('#reports_table').on('init.dt', function(e){
-
-    }).DataTable({
+    let reports_table = $('#reports_table').DataTable({
         initComplete: function () {
             this.api().columns(searchable_fields).every( function () {
                 var column = this;
@@ -157,7 +155,7 @@ $(document).ready(function() {
     });
 
     $('table tfoot th select').addClass('form-control');
-    $('#reports_table').on( 'draw.dt', add_statistics());
+    $('#reports_table').on('draw.dt', add_statistics());
 
 
     $('.dt-buttons button').addClass('btn btn-outline-success').removeClass('dt-button buttons-columnVisibility');

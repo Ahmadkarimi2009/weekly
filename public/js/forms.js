@@ -10,11 +10,27 @@
 function set_value_to_zero_if_minus(thiss) {
 
     // If current value is less than zero.
-    if (thiss.value < 0) {
+    if (thiss.val() < 0) {
 
         // Set the value back to zero.
-        thiss.value = 0;
+        thiss.val(0);
     }
+}
+
+/**
+ * Returns 'readonly' if field is total.
+ * Returns empty of field is not total.
+ * Total fields are supposed to be readonly as
+ * the system itself is going to manipulate them.
+ * @param {object} field 
+ * @returns 
+ */
+function determine_if_readonly_input(field) {
+    if (field.machine_name == 'total' || field.machine_name == 'total_eneficiaries') {
+        return 'readonly';
+    }
+
+    return '';
 }
 
 /**
@@ -39,7 +55,9 @@ $(document).ready(function(){
     })
 });
 
-
+/**
+ * Adding necessary fields based on the selected activity type.
+ */
 $(document).on('change', '#event_type_select_box', function(){
 
     // Remove previously added fields that were from pervious event type.
@@ -59,8 +77,7 @@ $(document).on('change', '#event_type_select_box', function(){
         // Get access to the actual field using the current field id.
         let actual_field = fields.find(ob => ob.id == field_id);
 
-        // Extra classes in case the field is for totals.
-        let extra_classes = add_necessary_classes_for_totals(actual_field);
+        let read_only = determine_if_readonly_input(actual_field);
 
         if (actual_field.data_type == 'checkbox') {
             input_tag += `
@@ -121,8 +138,8 @@ $(document).on('change', '#event_type_select_box', function(){
                     <div class="col-sm-12 event_type_related_fields">
                         <div class="form-group pt-3">
                             <label for="${actual_field.machine_name}">${actual_field.name}</label>
-                            <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
-                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required="required" value="">
+                            <input type="${actual_field.data_type}" class="form-control form-control-lg ${actual_field.machine_name}"
+                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required="required" value="" ${read_only}>
                         </div>
                     </div>
                 `;
@@ -133,8 +150,8 @@ $(document).on('change', '#event_type_select_box', function(){
                     <div class="col-sm-6 event_type_related_fields">
                         <div class="form-group pt-3">
                             <label for="${actual_field.machine_name}">${actual_field.name}</label>
-                            <input type="${actual_field.data_type}" class="form-control form-control-lg ${extra_classes}"
-                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required="required" value="">
+                            <input type="${actual_field.data_type}" class="form-control form-control-lg ${actual_field.machine_name}"
+                            name="${actual_field.machine_name}" id="${actual_field.machine_name}" placeholder="${actual_field.name}" required="required" value="" ${read_only}>
                         </div>
                     </div>
                 `;
@@ -147,31 +164,6 @@ $(document).on('change', '#event_type_select_box', function(){
     // Add the generated fields to the form.
     $('#event_type_select_box_container').after(input_tag);
 });
-
-
-/**
- * Returning appropriate class
- * for the given field if it is
- * for calculating total number
- * of male or female.
- * @param {object} actual_field 
- * @returns 
- */
-function add_necessary_classes_for_totals(actual_field) {
-
-    // Empty class.
-    let classes = "";
-
-    // If field is total of male or female.
-    if (actual_field.machine_name == 'number_of_male' || actual_field.machine_name == 'number_of_female') {
-
-        // Return class name.
-        return 'mw_totals'
-    }
-
-    // Return empty class.
-    return classes;
-}
 
 $('.add_edit_report_form_submit_btn').on('click', function(e){
     let json_data = new Object;
@@ -195,3 +187,14 @@ $('.add_edit_report_form_submit_btn').on('click', function(e){
     $('#json_data_input_field').val(JSON.stringify(json_data));
     $(this).parents('form').submit();
 })
+
+/**
+ * Summing and adding up the totals for male
+ * and female participants.
+ */
+$(document).on('change', '.number_of_male, .number_of_female, .male_beneficiaries, .female_eneficiaries', function(){
+    set_value_to_zero_if_minus($(this));
+
+    $('input.total').val(Number($('.number_of_female').val()) + Number($('.number_of_male').val()));
+    $('input.total_eneficiaries').val(Number($('.female_eneficiaries').val()) + Number($('.male_beneficiaries').val()));
+});

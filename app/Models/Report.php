@@ -13,6 +13,10 @@ class Report extends Model
         return $this->belongsTo(province::class, 'province');
     }
 
+    public function report() {
+        return $this->hasMany(Testimonial::class);
+    }
+
     /**
      * The attributes that should be cast.
      *

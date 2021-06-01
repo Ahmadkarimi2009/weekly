@@ -35,6 +35,28 @@
                 </select>
               </div>
             </div>
+            <div class="col-sm-12">
+              <fieldset class="border p-2 mb-3">
+                <legend class="w-auto">Testimonail:</legend>
+                <div class="form-group pt-3">
+                  <label for="testimonial_number_1">Testimonial</label>
+                  <textarea class="form-control" id="testimonial_number_1" rows="4" name="testimonial[1][0]"></textarea>
+                </div>
+                <div class="form-group pt-3">
+                  <label for="testimonial_number_1_name">Name of Person</label>
+                  <input type="text" class="form-control" id="testimonial_number_1_name" name="testimonial[1][1]">
+                </div>
+                <div class="col-sm-12">
+                  <div class="border rounded p-3">
+                    <label for="testimonial_person_image_1">Image of the person (If any)</label>
+                    <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="testimonial[1][2]" id="testimonial_person_image_1" placeholder="123">
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-12">
+              <a role="button" class="btn btn-outline-success" id="add_more_testimonial_btn">Add More Testimonial</a>
+            </div>
             <div class="col-sm-6">
               <div class="form-group pt-3">
                 <label for="years_select_box">List of Years</label>

@@ -125,8 +125,7 @@ $(document).on('change', '#event_type_select_box', function(){
                 <div class="col-sm-12 event_type_related_fields">
                     <div class="form-group pt-3">
                         <label for="${actual_field.machine_name}">${actual_field.name}</label>
-                        <textarea class="form-control" id="${actual_field.machine_name}" rows="4" name="${actual_field.machine_name}">
-                        </textarea>
+                        <textarea class="form-control" id="${actual_field.machine_name}" rows="4" name="${actual_field.machine_name}"></textarea>
                     </div>
                 </div>
             `;
@@ -197,4 +196,38 @@ $(document).on('change', '.number_of_male, .number_of_female, .male_beneficiarie
 
     $('input.total').val(Number($('.number_of_female').val()) + Number($('.number_of_male').val()));
     $('input.total_eneficiaries').val(Number($('.female_eneficiaries').val()) + Number($('.male_beneficiaries').val()));
+});
+
+var testimonial_number = 2;
+$(document).on('click', '#add_more_testimonial_btn', function(){
+    $(this).parent().before(`
+        <div class="col-sm-12">
+            <fieldset class="border p-2 mb-3">
+                <legend class="w-auto">Testimonail:</legend>
+                <button type="button" class="btn btn-sm delete_testimonial_button float-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M16 1.75V3h5.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H8V1.75C8 .784 8.784 0 9.75 0h4.5C15.216 0 16 .784 16 1.75zm-6.5 0a.25.25 0 01.25-.25h4.5a.25.25 0 01.25.25V3h-5V1.75z"></path><path d="M4.997 6.178a.75.75 0 10-1.493.144L4.916 20.92a1.75 1.75 0 001.742 1.58h10.684a1.75 1.75 0 001.742-1.581l1.413-14.597a.75.75 0 00-1.494-.144l-1.412 14.596a.25.25 0 01-.249.226H6.658a.25.25 0 01-.249-.226L4.997 6.178z"></path><path d="M9.206 7.501a.75.75 0 01.793.705l.5 8.5A.75.75 0 119 16.794l-.5-8.5a.75.75 0 01.705-.793zm6.293.793A.75.75 0 1014 8.206l-.5 8.5a.75.75 0 001.498.088l.5-8.5z"></path></svg>
+                </button>
+                <div class="form-group pt-3">
+                    <label for="testimonial_number_1">Testimonial</label>
+                    <textarea class="form-control" id="testimonial_number_1" rows="4" name="testimonial[${testimonial_number}]['text']"></textarea>
+                </div>
+                <div class="form-group pt-3">
+                    <label for="testimonial_number_${testimonial_number}_name">Name of Person</label>
+                    <input type="text" class="form-control" id="testimonial_number_${testimonial_number}_name" name="testimonial[${testimonial_number}]['name']">
+                </div>
+                <div class="col-sm-12">
+                    <div class="border rounded p-3">
+                        <label for="testimonial_number_${testimonial_number}_name">Image of the person (If any)</label>
+                        <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="testimonial[${testimonial_number}]['image']" id="testimonial_number_${testimonial_number}_name" placeholder="123">
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    `);
+
+    testimonial_number++;
+});
+
+$(document).on('click', '.delete_testimonial_button', function(){
+    $(this).parent().parent().remove();
 });

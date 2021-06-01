@@ -7,6 +7,7 @@ use App\Models\Province;
 use App\Models\Topic;
 use App\Models\Fields;
 use App\Models\EventType;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Storage;
 use Session;
@@ -55,6 +56,8 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request);
         $validated = $request->validate([
             'province' => 'required',
             'event_type' => 'required',
@@ -76,8 +79,23 @@ class ReportController extends Controller
         $report->event_type_id = $request->event_type;
         $report->json_data = json_decode($request->json_data);
 
-        $report->save();
+        // $report->save();
+        if ($request->testimonial) {
+            foreach ($request->testimonial as $key => $testimonial) {
 
+                if ($request->hasFile($testimonial[2])) {
+                    $name = strtotime(date('Y-m-dTH:i:s')) . $request->file($testimonial[2])->getClientOriginalName();
+                    $testi_image = $request->file('testimonial')->storeAs('testimonial_image', $name);
+                    $tastim->image = $testi_image;
+                }
+                $testim = new Testimonial;
+                $testim->report_id = $report->id;
+                $testim->testimonial = $testimonial[0];
+                $testim->name = $testimonial[1];
+                $testim->save();
+            }
+        }
+        
         Session::flash('message', ['Insertion Successful!', 'Province Store Successfully!', 'success']);
         return redirect()->route('activities', $request->event_type);
     }

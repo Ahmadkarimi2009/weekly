@@ -209,16 +209,16 @@ $(document).on('click', '#add_more_testimonial_btn', function(){
                 </button>
                 <div class="form-group pt-3">
                     <label for="testimonial_number_1">Testimonial</label>
-                    <textarea class="form-control" id="testimonial_number_1" rows="4" name="testimonial[${testimonial_number}]['text']"></textarea>
+                    <textarea class="form-control" id="testimonial_number_1" rows="4" name="testimonial[${testimonial_number}][0]"></textarea>
                 </div>
                 <div class="form-group pt-3">
                     <label for="testimonial_number_${testimonial_number}_name">Name of Person</label>
-                    <input type="text" class="form-control" id="testimonial_number_${testimonial_number}_name" name="testimonial[${testimonial_number}]['name']">
+                    <input type="text" class="form-control" id="testimonial_number_${testimonial_number}_name" name="testimonial[${testimonial_number}][1]">
                 </div>
                 <div class="col-sm-12">
                     <div class="border rounded p-3">
                         <label for="testimonial_number_${testimonial_number}_name">Image of the person (If any)</label>
-                        <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="testimonial[${testimonial_number}]['image']" id="testimonial_number_${testimonial_number}_name" placeholder="123">
+                        <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="testimonial[${testimonial_number}][2]" id="testimonial_number_${testimonial_number}_name" placeholder="123">
                     </div>
                 </div>
             </fieldset>

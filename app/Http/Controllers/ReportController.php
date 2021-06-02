@@ -57,7 +57,7 @@ class ReportController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
+        // dd($request);
         $validated = $request->validate([
             'province' => 'required',
             'event_type' => 'required',
@@ -79,19 +79,23 @@ class ReportController extends Controller
         $report->event_type_id = $request->event_type;
         $report->json_data = json_decode($request->json_data);
 
-        // $report->save();
-        if ($request->testimonial) {
-            foreach ($request->testimonial as $key => $testimonial) {
+        $report->save();
 
-                if ($request->hasFile($testimonial[2])) {
-                    $name = strtotime(date('Y-m-dTH:i:s')) . $request->file($testimonial[2])->getClientOriginalName();
-                    $testi_image = $request->file('testimonial')->storeAs('testimonial_image', $name);
-                    $tastim->image = $testi_image;
-                }
+        // Loop through testimonials.
+        if ($request->testimonial) {
+            foreach ($request->testimonial as $key => $testimoniala) {
+
                 $testim = new Testimonial;
+
+                // Uploading image of the person.
+                if ($request->hasFile('testimonial.'.$key.'.2')) {
+                    $name = strtotime(date('Y-m-dTH:i:s ')) . $request->file('testimonial.'.$key.'.2')->getClientOriginalName();
+                    $testi_image = $request->file('testimonial.'.$key.'.2')->storeAs('testimonial_image', $name);
+                    $testim->image = $testi_image;
+                }
                 $testim->report_id = $report->id;
-                $testim->testimonial = $testimonial[0];
-                $testim->name = $testimonial[1];
+                $testim->testimonial = $testimoniala[0];
+                $testim->name = $testimoniala[1];
                 $testim->save();
             }
         }

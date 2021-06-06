@@ -45,31 +45,6 @@ $(document).ready(function() {
         }
     });
 
-    function add_statistics() {
-        let array_of_totals_columns = ['Number of Male', 'Number of Female', 'Total', 'Number of Sessions', 'Male Beneficiaries', 'Female Beneficiaries', 'Total Beneficiaries'];
-            $('#statistics_section').empty();
-
-            $('table thead tr th').each(function(index){
-                if($.inArray($(this).text(), array_of_totals_columns) !== -1) {
-                    let column_title = $(this).text();
-                    let totals_each_row = reports_table.column(index, {search: 'applied'} ).data().toArray();
-
-                    let overall_total = 0;
-                    for (var i = 0; i < totals_each_row.length; i++) {
-                        overall_total += totals_each_row[i] << 0;
-                    }
-
-                    $('#statistics_section').append(`
-                        
-                        <div class="bg-light p-4 m-2 rounded statistics_blocks">
-                            <h3>${column_title}</h3>
-                            <h1 class="text-danger">${overall_total}</h1>
-                        </div>
-                    `);
-                }
-            })
-    }
-
     /**
      * 
      */
@@ -155,8 +130,34 @@ $(document).ready(function() {
     });
 
     $('table tfoot th select').addClass('form-control');
-    $('#reports_table').on('draw.dt', add_statistics());
+    $(document).on('draw.dt', '#reports_table', add_statistics);
+    function add_statistics() {
+        let array_of_totals_columns = ['Number of Male', 'Number of Female', 'Total', 'Number of Sessions', 'Male Beneficiaries', 'Female Beneficiaries', 'Total Beneficiaries'];
+        $('#statistics_section').empty();
 
+        $('table thead tr th').each(function(index){
+            if($.inArray($(this).text(), array_of_totals_columns) !== -1) {
+                if (reports_table != undefined) {
+                    let column_title = $(this).text();
+                    let totals_each_row = reports_table.column(index, {search: 'applied'} ).data().toArray();
+    
+                    let overall_total = 0;
+                    for (var i = 0; i < totals_each_row.length; i++) {
+                        overall_total += totals_each_row[i] << 0;
+                    }
+    
+                    $('#statistics_section').append(`
+                        
+                        <div class="bg-light p-4 m-2 rounded statistics_blocks">
+                            <h3>${column_title}</h3>
+                            <h1 class="text-danger">${overall_total}</h1>
+                        </div>
+                    `);
+                }
+                
+            }
+        })
+    }
 
     $('.dt-buttons button').addClass('btn btn-outline-success').removeClass('dt-button buttons-columnVisibility');
 

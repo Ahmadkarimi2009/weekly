@@ -163,7 +163,7 @@
                     <a class="nav-link" href="" id="" role="button" ">Meeting Minutes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="" id="" role="button" ">Testimonials</a>
+                    <a class="nav-link" href="{{ route('testimonial.index') }}" id="" role="button" ">Testimonials</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="" id="" role="button" ">Trainings</a>

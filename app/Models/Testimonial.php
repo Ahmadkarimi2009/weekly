@@ -10,7 +10,11 @@ class Testimonial extends Model
     use HasFactory;
 
     protected $fillable = ['image'];
+    protected $with = ['report'];
+
     public function report() {
         return $this->belongsTo(Report::class);
     }
+
+
 }

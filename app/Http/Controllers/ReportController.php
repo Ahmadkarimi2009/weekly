@@ -8,12 +8,14 @@ use App\Models\Topic;
 use App\Models\Fields;
 use App\Models\EventType;
 use App\Models\Testimonial;
+use App\Http\Traits\CommonFunctions;
 use Illuminate\Http\Request;
 use Storage;
 use Session;
 
 class ReportController extends Controller
 {
+    use CommonFunctions;
     /**
      * Display a listing of the resource.
      *
@@ -176,16 +178,6 @@ class ReportController extends Controller
         $report->delete();
         Session::flash('message', ["Deletion Successful!", "Province Deleted Successfully!", "success"]);
         return redirect()->route('report.index');
-    }
-
-    public function get_list_of_years() {
-        $base_year = 2010;
-        $current_year = date('Y');
-        for ($base_year; $base_year <= $current_year; $base_year++) {
-            $years[] = $base_year;
-        }
-
-        return $years;
     }
 
     public function event_type($event_type_id = 1) {

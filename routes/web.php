@@ -6,6 +6,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('report', ReportController::class);
     Route::resource('province', ProvinceController::class);
     Route::resource('event_types', EventTypeController::class);
+    Route::resource('testimonial', TestimonialController::class);
 
 
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Testimonial;
+use App\Models\Province;
+use App\Models\EventType;
+use App\Http\Traits\CommonFunctions;
+
 use Illuminate\Http\Request;
 
 class TestimonialController extends Controller
 {
+    use CommonFunctions;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,12 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        //
+        $testimonials = Testimonial::all();
+        $provinces = Province::all();
+        $event_types = EventType::all();
+        $years = $this->get_list_of_years();
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        return view('testimonials', compact('testimonials', 'provinces', 'event_types', 'years', 'months'));
     }
 
     /**

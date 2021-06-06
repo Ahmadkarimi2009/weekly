@@ -9,11 +9,13 @@ class Report extends Model
 {
     use HasFactory;
 
-    public function province() {
+    protected $with = ['province_table'];
+
+    public function province_table() {
         return $this->belongsTo(province::class, 'province');
     }
 
-    public function report() {
+    public function testimonial() {
         return $this->hasMany(Testimonial::class);
     }
 

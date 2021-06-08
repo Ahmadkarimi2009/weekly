@@ -12,9 +12,11 @@
 
         @if ($reports != "empty")
             @foreach ($event_types as $event)
-                <h1 class="mt-5">{{ $event->name }}</h1>
+                <div class="alert alert-success mt-5" role="alert">
+                    <div>{{ $event->name }}</div>
+                </div>
                 <table class="table table-bordered" id="specific_report_table_{{$event->id}}">
-                    <thead>
+                    <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Province</th>
@@ -24,7 +26,7 @@
                             @foreach ($event->fields as $event_field)
                                 @foreach ($fields as $field)
                                     @if ($field->id == $event_field)
-                                        <th scope="col">{{ $field->name }}</th>
+                                        <th scope="col" class="{{ $field->machine_name}}">{{ $field->name }}</th>
                                     @endif
                                 @endforeach
                             @endforeach
@@ -50,7 +52,7 @@
                                         @foreach ($fields as $field)
                                             @if ($field->id == $event_field)
                                                 @if (isset($report->json_data[$field->machine_name]))
-                                                    <td>{{ $report->json_data[$field->machine_name] }}</td>
+                                                    <td class="{{ $field->machine_name }}">{{ $report->json_data[$field->machine_name] }}</td>
                                                 @else
                                                     <td></td>
                                                 @endif

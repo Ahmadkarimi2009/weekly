@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+    let total_number_of_male = 0;
+    let total_number_of_female = 0;
+    let total_number_of_male_female = 0;
+    let total_number_of_session = 0;
+
     for (const key in event_types) {
         if (Object.hasOwnProperty.call(event_types, key)) {
             const each_event = event_types[key];
@@ -27,7 +32,7 @@ $(document).ready(function() {
                 index++;
             }
 
-            console.log(searchable_fields);
+            // console.log(searchable_fields);
 
             for (let index = 0; index < $('#specific_report_table_' + each_event.id + ' thead th').length; index++) {
                 $('#specific_report_table_' + each_event.id + ' tfoot tr').append('<th scope="col"></th>')

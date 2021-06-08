@@ -12,6 +12,7 @@ use App\Http\Traits\CommonFunctions;
 use Illuminate\Http\Request;
 use Storage;
 use Session;
+use DB;
 
 class ReportController extends Controller
 {
@@ -203,5 +204,28 @@ class ReportController extends Controller
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
 
         return view('reports', compact('reports', 'provinces', 'fields', 'event_type', 'years', 'months', 'province'));
+    }
+
+    public function specific_report(Request $request) {
+        // dd($request);
+        $reports = DB::table('reports');
+        
+        if ($request->month == null && $request->year == null && $request->week == null && $request->event_type == null && $request->province == null) {
+            $reports = 'Empty';
+        }
+        else if ($request->month && $request->month[0] == 'all' && $request->year && $request->year[0] == 'all' && $request->week && $request->week[0] == 'all' && $request->event_type && $request->event_type[0] == 'all' && $request->province && $request->province[0] == 'all') {
+            $reports = Report::all()->toArray();
+        }
+        else {
+            $reports = Report::all();
+        }
+
+        $event_types = EventType::all();
+        $provinces = Province::all();
+        $fields = Fields::all();
+        $years = $this->get_list_of_years();
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        return view('specific_report', compact('reports', 'provinces', 'fields', 'years', 'months', 'event_types'));
+
     }
 }

@@ -10,9 +10,9 @@
     float: right;
 }
 
-select.form-control[multiple] {
+/* select.form-control[multiple] {
     height: 400px;
-}
+} */
 
 .statistics_blocks {
     height: 150px;

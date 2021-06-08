@@ -2,9 +2,94 @@
 
 @section('content')
 <div class="container">
+    <form action="{{ route('specific_report') }}" method="post">
+        @csrf
+        <div class="row">
+            <div class="col-12">
+                <h1>Custom Filteration</h1>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group pt-3">
+                    <label for="years_select_box">List of Years</label>
+                    <select class="form-control form-control-lg multi_select" id="multiselect" name="year[]"  aria-label="Select Years Select Box" multiple>
+                        <option value="all">All</option>
+                        @foreach ($years as $year)
+                            <option value="{{ $year }}"
+                            @if (isset($old) && $old->year == $year)
+                                selected="selected"
+                            @elseif (!isset($old) && $year == date('Y'))
+                                selected="selected"
+                            @endif
+                            >
+                            {{ $year}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group pt-3">
+                    <label for="months_select_box">List of Months</label>
+                    <select class="form-control form-control-lg" name="month[]" id="months_select_box" aria-label="Select Month Select Box" multiple>
+                        <option value="all">All</option>
+                        @foreach ($months as $month)
+                            <option value="{{ $month }}" >{{ $month}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group pt-3">
+                    <label for="weeks_select_box">List of Weeks</label>
+                    <select class="form-control form-control-lg" name="week[]" id="weeks_select_box" aria-label="Select Week Select Box" multiple>
+                        <option value="all">All</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                        <option value="5" >5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group pt-3">
+                  <label for="province_select_box">Works with selects</label>
+                  <select class="form-control form-control-lg" name="province[]" id="province_select_box" aria-label="Select Province Select Box" multiple>
+                    <option selected value="all">All</option>
+                    @foreach ($provinces as $province)
+                      <option value="{{ $province->id }}"
+                        @if (isset($old) && $old->province == $province->id)
+                            selected="selected"
+                        @endif
+                      >{{ $province->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+            </div>
+            <div class="col-sm-12" id="event_type_select_box_container">
+                <div class="form-group pt-3">
+                  <label for="event_type_select_box">Event Type</label>
+                  <select class="form-control form-control-lg" name="event_type[]" id="event_type_select_box" aria-label="Select The Event Type" multiple>
+                    <option selected value="all">All</option>
+                    @foreach ($event_types as $event_type)
+                      <option value="{{ $event_type->id }}"
+                        @if (isset($old) && $old->event_type_id == $event_type->id)
+                            selected="selected"
+                        @endif
+                      >{{ $event_type->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success w-100">Filter</button>
+            </div>
+        </div>
+    </form>
+
+    <hr>
     <div class="row">
         <div class="accordion w-100" id="accordionExample">
-            <h1>Home</h1>
+            <h1>Activities</h1>
             @foreach ($event_types as $event)
                 <div class="card">
                     <div class="card-header" id="event_{{$event->id}}">
@@ -26,4 +111,7 @@
         </div>
     </div>    
 </div>
+@endsection
+@section('js-scripts')
+    {{-- <script src="{{ asset('/js/multi_select.js') }}"></script> --}}
 @endsection

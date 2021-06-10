@@ -61,6 +61,8 @@ $(document).ready(function() {
                 },
             });
 
+            $(document).on('draw.dt', '#specific_report_table_' + each_event.id, calculate_totals);
+
             $('table tfoot th select').addClass('form-control');
             // $(document).on('draw.dt', '#reports_table', add_statistics);
 
@@ -72,4 +74,86 @@ $(document).ready(function() {
         }
     }
 
+    /**
+     * Calculating the numbers after tables loads and reload.
+     * 
+     * This function is called when the tables are generated
+     * and re-generated to calculate the totals.
+     */
+    function calculate_totals() {
+
+        total_number_of_male_female = 0;
+        // Empty the totals container div.
+        $('#statistics_section').empty();
+
+        // Define array of the total classes.
+        let male_female_totals_classes = ['number_of_male', 'number_of_female', 'male_beneficiaries', 'female_eneficiaries'];
+        let sessions_totals_classes = ['number_of_sessions', 'no_of_online_counseling_sessions_arranged_in_container', 'no_of_online_counseling_sessions', 'no_of_sessions_for_female_clients', 'no_of_sessions_for_male_clients'];
+
+        // Loop through total classes.
+        male_female_totals_classes.forEach(element => {
+            total_number_of_male_female += check_total_tds_and_add_them_to_div(element, male_female_totals_classes);
+        });
+
+        // Add the current total to the totals section.
+        $('#statistics_section').append(`           
+            <div class="bg-dark text-light p-4 m-2 rounded statistics_blocks">
+                <h3>Male & Female Total</h3>
+                <h1 class="text-danger">${total_number_of_male_female}</h1>
+            </div>
+        `);
+
+        // Loop through total classes.
+        sessions_totals_classes.forEach(element => {
+            total_number_of_session += check_total_tds_and_add_them_to_div(element, sessions_totals_classes);
+        });
+
+        // Add the current total to the totals section.
+        $('#statistics_section').append(`           
+            <div class="bg-dark text-light p-4 m-2 rounded statistics_blocks">
+                <h3>Total of All Sessions</h3>
+                <h1 class="text-danger">${total_number_of_session}</h1>
+            </div>
+            <br>
+        `);
+    }
+
+    // Caculate the totals for the first time after tables load. 
+    calculate_totals();
+
+    function check_total_tds_and_add_them_to_div (element, totals_classes_array) {
+        // Variable for holding the total number if needed to be returned.
+        let total_of_totals = 0;
+        // If tds with specified classes exist.
+        if ($('td.' + element).length > 0) {
+
+            // create a variable to hold the total for this total class.
+            let this_total = 0;
+
+            // Loop through all the tds with this total class.
+            $('td.' + element).each(function(){
+                if ($(this).text() != "") {
+
+                    // Add the totals for this total class.
+                    this_total += Number($(this).text()); 
+
+                    // If this element's total to be added to the overall totals.
+                    if (totals_classes_array.indexOf(element) != -1) {
+                        total_of_totals += Number($(this).text());
+                    }
+                }
+            });
+
+            // Add the current total to the totals section.
+            $('#statistics_section').append(`
+                    
+                <div class="bg-light p-4 m-2 rounded statistics_blocks">
+                    <h3>${element}</h3>
+                    <h1 class="text-danger">${this_total}</h1>
+                </div>
+            `);
+        }
+
+        return total_of_totals;
+    }
 });

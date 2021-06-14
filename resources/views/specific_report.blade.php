@@ -52,7 +52,7 @@
                                         @foreach ($fields as $field)
                                             @if ($field->id == $event_field)
                                                 @if (isset($report->json_data[$field->machine_name]))
-                                                    <td class="{{ $field->machine_name }}">{{ $report->json_data[$field->machine_name] }}</td>
+                                                    <td class="{{ $field->machine_name }} {{ $report->province_table->name }}">{{ $report->json_data[$field->machine_name] }}</td>
                                                 @else
                                                     <td></td>
                                                 @endif

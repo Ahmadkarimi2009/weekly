@@ -12,7 +12,7 @@ class Report extends Model
     protected $with = ['province_table'];
 
     public function province_table() {
-        return $this->belongsTo(Province::class, 'province');
+        return $this->belongsTo(province::class, 'province');
     }
 
     public function testimonial() {

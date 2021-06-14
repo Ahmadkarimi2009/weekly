@@ -6,6 +6,7 @@ $(document).ready(function() {
     let total_number_of_session = 0;
 
     for (const key in event_types) {
+        let total_columns_in_this_table = 5;
         if (Object.hasOwnProperty.call(event_types, key)) {
             const each_event = event_types[key];
 
@@ -14,7 +15,6 @@ $(document).ready(function() {
              */
             let event_type_fields = each_event.fields;
             let searchable_fields = [1,2,3,4];
-            let index = 5;
             for (const key2 in event_type_fields) {
                 if (Object.hasOwnProperty.call(event_type_fields, key2)) {
                     const field_id = event_type_fields[key2];
@@ -22,14 +22,14 @@ $(document).ready(function() {
                     for (const key3 in fields) {
                         if (Object.hasOwnProperty.call(fields, key3)) {
                             if (fields[key3].id == field_id && fields[key3].searchable == "true") {
-                                searchable_fields.push(index);
+                                searchable_fields.push(total_columns_in_this_table);
                             }
                         }
                     }
 
                 }
 
-                index++;
+                total_columns_in_this_table++;
             }
 
             // console.log(searchable_fields);
@@ -38,7 +38,11 @@ $(document).ready(function() {
                 $('#specific_report_table_' + each_event.id + ' tfoot tr').append('<th scope="col"></th>')
             }
 
+            // Variable holding the index of the column by which the grouping is done. "province column".
+            var groupColumn = 1;
             let reports_table = $('#specific_report_table_' + each_event.id).DataTable({
+
+                // This section is for adding filtering option for each column.
                 initComplete: function () {
                     this.api().columns(searchable_fields).every( function () {
                         var column = this;
@@ -59,9 +63,33 @@ $(document).ready(function() {
                         });
                     });
                 },
+
+                // Hiding the province column itself.
+                "columnDefs": [
+                    { "visible": false, "targets": groupColumn }
+                ],
+
+                // This section is for grouping based on provinces.
+                "drawCallback": function ( settings ) {
+                    var api = this.api();
+                    var rows = api.rows( {page:'current'} ).nodes();
+                    var last=null;
+         
+                    api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                        if ( last !== group ) {
+                            $(rows).eq( i ).before(
+                                '<tr class="group"><td class="bg-info border border-info text-white" colspan="' + Number(total_columns_in_this_table + 1) + '"><span class="grouping_title">'+group+'</span><span class="float-right statistics_for_this_province"></span></td></tr>'
+                            );
+         
+                            last = group;
+                        }
+                    } );
+                }
             });
 
-            $(document).on('draw.dt', '#specific_report_table_' + each_event.id, calculate_totals);
+            $(document).on('draw.dt', '#specific_report_table_' + each_event.id, calculate_totals).on('draw.dt', function(){
+                calculate_totals_for_one_table('specific_report_table_' + each_event.id);
+            }).on('init.dt', calculate_totals_for_one_table('specific_report_table_' + each_event.id));
 
             $('table tfoot th select').addClass('form-control');
             // $(document).on('draw.dt', '#reports_table', add_statistics);
@@ -155,5 +183,29 @@ $(document).ready(function() {
         }
 
         return total_of_totals;
+    }
+
+    function calculate_totals_for_one_table(table) {
+        $('#' + table + ' tbody tr.group .grouping_title').each(function(){
+            let province_name = $(this).text();
+            if (province_name != '') {
+                let total_male_in_province = 0;
+                let total_female_in_province = 0;
+                let total_both_in_province = 0;
+                $('#' + table + ' tbody tr').find('.number_of_male.' + province_name).each(function(){
+                    total_male_in_province += Number($(this).text());
+                    total_both_in_province += Number($(this).text());
+                });
+    
+                $('#' + table + ' tbody tr').find('.number_of_female.' + province_name).each(function(){
+                    total_female_in_province += Number($(this).text());
+                    total_both_in_province += Number($(this).text());
+                });
+    
+                $(this).siblings('.statistics_for_this_province').text(`
+                    Male: ${total_male_in_province} || Female: ${total_female_in_province} || Overall Total: ${total_both_in_province}
+                `);
+            }     
+        });
     }
 });

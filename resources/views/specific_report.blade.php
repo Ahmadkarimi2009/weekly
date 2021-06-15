@@ -16,17 +16,17 @@
             <h1>No Records found based on the current filters</h1>
         @elseif ($reports != "empty")
             @foreach ($event_types as $event)
-                <div class="mt-5 border-top border-secondary" role="alert">
-                    <h2 class="mt-5">{{ $event->name }}</h2>
+                <div class="mt-5" role="alert">
+                    <h2 class="">{{ $event->name }}</h2>
                 </div>
                 <table class="table table-bordered" id="specific_report_table_{{$event->id}}">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Province</th>
-                            <th scope="col">Week</th>
-                            <th scope="col">Month</th>
-                            <th scope="col">Year</th>
+                            <th scope="col" class="column_id">#</th>
+                            <th scope="col" class="column_province">Province</th>
+                            <th scope="col" class="column_week">Week</th>
+                            <th scope="col" class="column_month">Month</th>
+                            <th scope="col" class="column_year">Year</th>
                             @foreach ($event->fields as $event_field)
                                 @foreach ($fields as $field)
                                     @if ($field->id == $event_field)
@@ -41,17 +41,17 @@
                         @foreach($reports as $report)
                             @if ($report->event_type_id == $event->id)
                                 <tr>
-                                    <th>{{ $report->id }}</th>
-                                    <td>
+                                    <th class="column_id">{{ $report->id }}</th>
+                                    <td class="column_province">
                                         @foreach ($provinces as $province)
                                             @if ($province->id == $report->province)
                                                 {{ $province->name }}
                                             @endif
                                         @endforeach
                                     </td>
-                                    <td>{{ $report->week }}</td>
-                                    <td>{{ $report->month }}</td>
-                                    <td>{{ $report->year }}</td>
+                                    <td class="column_week">{{ $report->week }}</td>
+                                    <td class="column_month">{{ $report->month }}</td>
+                                    <td class="column_year">{{ $report->year }}</td>
                                     @foreach ($event->fields as $event_field)
                                         @foreach ($fields as $field)
                                             @if ($field->id == $event_field)

@@ -94,6 +94,7 @@ $(document).ready(function() {
 
             $(document).on('draw.dt', '#specific_report_table_' + each_event.id, calculate_totals).on('draw.dt', function(){
                 calculate_totals_for_one_table('specific_report_table_' + each_event.id);
+                add
             }).on('init.dt', calculate_totals_for_one_table('specific_report_table_' + each_event.id));
 
             $('table tfoot th select').addClass('form-control');

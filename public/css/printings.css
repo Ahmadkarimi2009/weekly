@@ -1,0 +1,34 @@
+
+
+@media print {
+
+    /* Hide and Show */
+    .do_not_print,
+    th::after,
+    th::before,
+    .dataTables_filter,
+    .dataTables_info {
+        display: none !important;
+    }
+
+    .print_this {
+        display: initial !important;
+    }
+
+
+    table tr th {
+        background-color: gray !important;
+    }
+
+    table tr.group td span.grouping_title {
+        font-weight: bold;
+    }
+
+    table tr.group td span {
+        color: initial !important;
+    }
+
+    table tr.group td {
+        background-color: rgb(250,250,250) !important;
+    }
+}

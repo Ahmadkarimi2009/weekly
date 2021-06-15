@@ -5,57 +5,7 @@
             <div>{{ $event_type->name }} -> {{ $province }}</div>
         </div> --}}
 
-        <div class="alert alert-info">
-
-            Year:
-            @if (isset($filter_params['year']))
-                @foreach ($filter_params['year'] as $year)
-                    <span class="badge badge-primary">{{ $year }}</span>
-                @endforeach
-            @else
-                <span class="badge badge-primary">All</span>
-            @endif
-
-            <br>
-            Month:
-            @if (isset($filter_params['month']))
-                @foreach ($filter_params['month'] as $month)
-                    <span class="badge badge-primary">{{ $month }}</span>
-                @endforeach
-            @else
-                <span class="badge badge-primary">All</span>
-            @endif
-
-            <br>
-            Week:
-            @if (isset($filter_params['week']))
-                @foreach ($filter_params['week'] as $week)
-                    <span class="badge badge-primary">{{ $week }}</span>
-                @endforeach
-            @else
-                <span class="badge badge-primary">All</span>
-            @endif
-
-            <br>
-            Province:
-            @if (isset($filter_params['province']))
-                @foreach ($filter_params['province'] as $province)
-                    <span class="badge badge-primary">{{ $province }}</span>
-                @endforeach
-            @else
-                <span class="badge badge-primary">All</span>
-            @endif
-
-            <br>
-            Event Type:
-            @if (isset($filter_params['event_type']))
-                @foreach ($filter_params['event_type'] as $event_type)
-                    <span class="badge badge-primary">{{ $event_type }}</span>
-                @endforeach
-            @else
-                <span class="badge badge-primary">All</span>
-            @endif
-        </div>
+        @include('partials/partials')
         
         <div id="statistics_section" class="row pl-2 pr-2">
 
@@ -66,8 +16,8 @@
             <h1>No Records found based on the current filters</h1>
         @elseif ($reports != "empty")
             @foreach ($event_types as $event)
-                <div class="alert alert-success mt-5" role="alert">
-                    <div>{{ $event->name }}</div>
+                <div class="mt-5 border-top border-secondary" role="alert">
+                    <h2 class="mt-5">{{ $event->name }}</h2>
                 </div>
                 <table class="table table-bordered" id="specific_report_table_{{$event->id}}">
                     <thead class="thead-dark">
@@ -84,7 +34,7 @@
                                     @endif
                                 @endforeach
                             @endforeach
-                            <th scope="col">Action</th>
+                            <th scope="col" class="do_not_print">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,7 +64,7 @@
                                         @endforeach
                                     @endforeach
                     
-                                    <td>
+                                    <td class="do_not_print">
                                         <a href="{{ route('report.edit', $report->id) }}" class="btn btn-sm">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M3.38 8A9.502 9.502 0 0112 2.5a9.502 9.502 0 019.215 7.182.75.75 0 101.456-.364C21.473 4.539 17.15 1 12 1a10.995 10.995 0 00-9.5 5.452V4.75a.75.75 0 00-1.5 0V8.5a1 1 0 001 1h3.75a.75.75 0 000-1.5H3.38zm-.595 6.318a.75.75 0 00-1.455.364C2.527 19.461 6.85 23 12 23c4.052 0 7.592-2.191 9.5-5.451v1.701a.75.75 0 001.5 0V15.5a1 1 0 00-1-1h-3.75a.75.75 0 000 1.5h2.37A9.502 9.502 0 0112 21.5c-4.446 0-8.181-3.055-9.215-7.182z"></path></svg>
                                         </a>
@@ -135,7 +85,7 @@
                             @endif
                         @endforeach
                     </tbody>
-                    <tfoot>
+                    <tfoot class="do_not_print">
                         <tr>
                         
                         </tr>

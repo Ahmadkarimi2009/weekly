@@ -63,6 +63,11 @@ $(document).ready(function() {
                         });
                     });
                 },
+                "paging": false,
+                "order": [[1, 'asc']],
+                "oLanguage": {
+                    "sEmptyTable": "No entries are available for this activity type"
+                },
 
                 // Hiding the province column itself.
                 "columnDefs": [
@@ -78,7 +83,7 @@ $(document).ready(function() {
                     api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
                         if ( last !== group ) {
                             $(rows).eq( i ).before(
-                                '<tr class="group"><td class="bg-info border border-info text-white" colspan="' + Number(total_columns_in_this_table + 1) + '"><span class="grouping_title">'+group+'</span><span class="float-right statistics_for_this_province"></span></td></tr>'
+                                '<tr class="group"><td class="bg-light border border-light text-dark" colspan="' + Number(total_columns_in_this_table + 1) + '"><span class="grouping_title">'+group+'</span><span class="float-right statistics_for_this_province"></span></td></tr>'
                             );
          
                             last = group;
@@ -92,6 +97,7 @@ $(document).ready(function() {
             }).on('init.dt', calculate_totals_for_one_table('specific_report_table_' + each_event.id));
 
             $('table tfoot th select').addClass('form-control');
+            $('table').find('.dataTables_filter, .dataTables_info').addClass('do_not_print');
             // $(document).on('draw.dt', '#reports_table', add_statistics);
 
 

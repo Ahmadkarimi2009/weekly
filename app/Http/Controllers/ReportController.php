@@ -242,7 +242,7 @@ class ReportController extends Controller
             $reports = $reports->get();
         }
 
-        // dd(count($reports));
+        // dd($reports);
 
         $filter_params = $request->input();
         $event_types = EventType::all();

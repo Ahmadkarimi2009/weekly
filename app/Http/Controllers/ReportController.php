@@ -217,43 +217,51 @@ class ReportController extends Controller
     }
 
     public function specific_report(Request $request) {
-        // dd($request->input());
         
         if ($request->month == null && $request->year == null && $request->week == null && $request->event_type == null && $request->province == null) {
             $reports = 'Empty';
         }
-        else if ($request->month && $request->month[0] == 'all' && $request->year && $request->year[0] == 'all' && $request->week && $request->week[0] == 'all' && $request->event_type && $request->event_type[0] == 'all' && $request->province && $request->province[0] == 'all') {
+        else if        // dd($request->input());
+ ($request->month && $request->month[0] == 'all' && $request->year && $request->year[0] == 'all' && $request->week && $request->week[0] == 'all' && $request->event_type && $request->event_type[0] == 'all' && $request->province && $request->province[0] == 'all') {
             // This section is working just fine.
             $reports = Report::all();
         }
         else {
-            $reports = DB::table('reports');
+            $year = $request->year;
+            $month = $request->month;
+            $week = $request->week;
+            $event_type = $request->event_type;
+            $province = $request->province;
 
-            if ($request->year && $request->year[0] != 'all') {
-                $reports->whereIn('year', $request->year);
-            }
-
-            if ($request->month && $request->month[0] != 'all') {
-                $reports->whereIn('month', $request->month);
-            }
-
-            if ($request->week && $request->week[0] != 'all') {
-                $reports->whereIn('week', $request->week);
-            }
-
-            if ($request->province && $request->province[0] != 'all') {
-                $reports->whereIn('province', $request->province);
-            }
-
-            if ($request->event_type && $request->event_type[0] != 'all') {
-                $reports->whereIn('event_type_id', $request->event_type);
-            }
-
-            $reports = $reports->get();
+            $reports = Report::when($year, function($query, $year){
+                if ($year[0] != 'all') {
+                    return $query->whereIn('year', $year);
+                }
+            })
+            ->when($month, function($query, $month) {
+                if ($month[0] != 'all') {
+                    return $query->whereIn('month', $month);
+                }
+            })
+            ->when($week, function($query, $week) {
+                if ($week[0] != 'all') {
+                    return $query->whereIn('week', $week);
+                }
+            })
+            ->when($province, function($query, $province) {
+                if ($province[0] != 'all') {
+                    return $query->whereIn('province', $province);
+                }
+            })
+            ->when($event_type, function($query, $event_type) {
+                if ($event_type[0] != 'all') {
+                    return $query->whereIn('event_type_id', $event_type);
+                }
+            })
+            ->get();
         }
 
         // dd($reports);
-
         $filter_params = $request->input();
         $event_types = EventType::all();
         $provinces = Province::all();

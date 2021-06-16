@@ -22,11 +22,11 @@
                 <table class="table table-bordered" id="specific_report_table_{{$event->id}}">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col" class="column_id">#</th>
-                            <th scope="col" class="column_province">Province</th>
-                            <th scope="col" class="column_week">Week</th>
-                            <th scope="col" class="column_month">Month</th>
-                            <th scope="col" class="column_year">Year</th>
+                            <th scope="col" class="hidable_columns column_id" data-target="column_id">#</th>
+                            <th scope="col" class="hidable_columns column_province" data-target="column_province">Province</th>
+                            <th scope="col" class="hidable_columns column_week" data-target="column_week">Week</th>
+                            <th scope="col" class="hidable_columns column_month" data-target="column_month">Month</th>
+                            <th scope="col" class="hidable_columns column_year" data-target="column_year">Year</th>
                             @foreach ($event->fields as $event_field)
                                 @foreach ($fields as $field)
                                     @if ($field->id == $event_field)

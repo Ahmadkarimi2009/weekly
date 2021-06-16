@@ -72,3 +72,9 @@
         <span class="badge badge-primary">All</span>
     @endif
 </div>
+<div id="column_hide_buttons_secion">
+    <h2>Hide columns</h2>
+    <div id="hiding_columns_div" class="do_not_print">
+
+    </div>
+</div>

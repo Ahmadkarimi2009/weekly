@@ -88,18 +88,19 @@ class ReportController extends Controller
         if ($request->testimonial) {
             foreach ($request->testimonial as $key => $testimoniala) {
 
-                $testim = new Testimonial;
-
-                // Uploading image of the person.
-                if ($request->hasFile('testimonial.'.$key.'.2')) {
-                    $name = strtotime(date('Y-m-dTH:i:s ')) . $request->file('testimonial.'.$key.'.2')->getClientOriginalName();
-                    $testi_image = $request->file('testimonial.'.$key.'.2')->storeAs('testimonial_image', $name);
-                    $testim->image = $testi_image;
+                if ($testimoniala[0] != null && $testimoniala[1] != null) {
+                    $testim = new Testimonial;
+                    // Uploading image of the person.
+                    if ($request->hasFile('testimonial.'.$key.'.2')) {
+                        $name = strtotime(date('Y-m-dTH:i:s ')) . $request->file('testimonial.'.$key.'.2')->getClientOriginalName();
+                        $testi_image = $request->file('testimonial.'.$key.'.2')->storeAs('testimonial_image', $name);
+                        $testim->image = $testi_image;
+                    }
+                    $testim->report_id = $report->id;
+                    $testim->testimonial = $testimoniala[0];
+                    $testim->name = $testimoniala[1];
+                    $testim->save();
                 }
-                $testim->report_id = $report->id;
-                $testim->testimonial = $testimoniala[0];
-                $testim->name = $testimoniala[1];
-                $testim->save();
             }
         }
         

@@ -69,12 +69,21 @@ class ReportController extends Controller
             'week' => 'required',
             'json_data' => 'required'
         ]);
-        // if ($request->hasFile('weekly_report')) {
-        //     $name = strtotime(date('Y-m-dTH:i:s')) . $request->file('weekly_report')->getClientOriginalName();
-        //     $weekly_report_file = $request->file('weekly_report')->storeAs('weekly_reports', $name);
-        // }
 
         $report = new Report;
+        if ($request->hasFile('weekly_report')) {
+            $new_file_extension = $request->file('weekly_report')->getClientOriginalExtension();
+            $name = $request->province . $request->year. $request->month . $request->week . '.' . $new_file_extension;
+            $path = 'weekly_reports/' . $name;
+
+            // If the file is not yet uploaded.
+            if (! Storage::exists('weekly_reports/' . $name)) {
+                $path = $request->file('weekly_report')->storeAs('weekly_reports', $name);
+            }
+
+            $report->weekly_report_file = $path;
+        }
+        
         $report->province = $request->province;
         $report->year = $request->year;
         $report->month = $request->month;

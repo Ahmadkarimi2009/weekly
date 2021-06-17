@@ -7,6 +7,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\FieldsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('province', ProvinceController::class);
     Route::resource('event_types', EventTypeController::class);
     Route::resource('testimonial', TestimonialController::class);
+    Route::resource('field', FieldsController::class);
 
 
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');

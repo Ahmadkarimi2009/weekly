@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fields;
 use Illuminate\Http\Request;
+use Session;
 
 class FieldsController extends Controller
 {
@@ -14,7 +15,8 @@ class FieldsController extends Controller
      */
     public function index()
     {
-        //
+        $fields = Fields::all();
+        return view('fields', compact('fields'));
     }
 
     /**
@@ -24,7 +26,9 @@ class FieldsController extends Controller
      */
     public function create()
     {
-        //
+        $route = route('field.store');
+        $method = 'POST';
+        return view('add_edit_fields', compact('route', 'method'));
     }
 
     /**
@@ -35,7 +39,22 @@ class FieldsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'data_type' => 'required',
+            'searchable' => 'required',
+            'machine_name' => 'required'
+        ]);
+
+        $field = new Fields;
+        $field->name = $request->name;
+        $field->machine_name = $request->machine_name;
+        $field->data_type = $request->data_type;
+        $field->searchable = $request->searchable;
+        $field->save();
+
+        Session::flash('message', ['Insertion Successful!', 'Field Stored Successfully!', 'success']);
+        return redirect()->route('field.index');
     }
 
     /**
@@ -55,9 +74,12 @@ class FieldsController extends Controller
      * @param  \App\Models\Fields  $fields
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fields $fields)
+    public function edit(Fields $field)
     {
-        //
+        $route = route('field.update', $field->id);
+        $method = 'PUT';
+        $old = $field;
+        return view('add_edit_fields', compact('route', 'method', 'old'));
     }
 
     /**
@@ -67,9 +89,23 @@ class FieldsController extends Controller
      * @param  \App\Models\Fields  $fields
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fields $fields)
+    public function update(Request $request, Fields $field)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'data_type' => 'required',
+            'searchable' => 'required',
+            'machine_name' => 'required'
+        ]);
+
+        $field->name = $request->name;
+        $field->machine_name = $request->machine_name;
+        $field->data_type = $request->data_type;
+        $field->searchable = $request->searchable;
+        $field->save();
+
+        Session::flash('message', ['Update Successful!', 'Field Updated Successfully!', 'success']);
+        return redirect()->route('field.index');
     }
 
     /**
@@ -78,8 +114,10 @@ class FieldsController extends Controller
      * @param  \App\Models\Fields  $fields
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fields $fields)
+    public function destroy(Fields $field)
     {
-        //
+        $field->delete();
+        Session::flash('message', ['Deletion Successful!', 'Field Deleted Successfully!', 'success']);
+        return redirect()->route('field.index');
     }
 }

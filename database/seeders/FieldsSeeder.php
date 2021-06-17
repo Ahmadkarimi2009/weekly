@@ -196,13 +196,6 @@ class FieldsSeeder extends Seeder
                 'machine_name' => 'date_of_activity',
                 'data_type' => 'date',
                 'searchable' => 'true'
-            ],
-            [
-                'name' =>'Images',
-                'table_name' => '',
-                'machine_name' => 'images',
-                'data_type' => 'file',
-                'searchable' => 'false'
             ]
         ];
 

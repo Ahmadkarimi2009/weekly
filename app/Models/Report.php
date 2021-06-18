@@ -26,5 +26,6 @@ class Report extends Model
      */
     protected $casts = [
         'json_data' => 'array',
+        'images' => 'array',
     ];
 }

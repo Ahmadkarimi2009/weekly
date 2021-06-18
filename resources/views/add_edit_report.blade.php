@@ -49,7 +49,7 @@
                 <div class="col-sm-12">
                   <div class="border rounded p-3">
                     <label for="testimonial_person_image_1">Image of the person (If any)</label>
-                    <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="testimonial[1][2]" id="testimonial_person_image_1" placeholder="123">
+                    <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="testimonial[1][2]" id="testimonial_person_image_1">
                   </div>
                 </div>
               </fieldset>
@@ -100,8 +100,14 @@
            
             <div class="col-sm-12">
               <div class="border rounded p-3">
+                <label for="upload_images_input">Images</label>
+                <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="images[]" id="upload_images_input" multiple>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="border rounded p-3">
                 <label for="original_weekly_report_file">Original weekly report file</label>
-                <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="weekly_report" id="original_weekly_report_file" placeholder="123">
+                <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="weekly_report" id="original_weekly_report_file">
               </div>
             </div>
             <div class="col-sm-12">

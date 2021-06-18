@@ -19,7 +19,8 @@ class CreateReportsTable extends Migration
             $table->enum('month', ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December']);
             $table->year('year');
             $table->jsonb('json_data')->nullable();
-            $table->string('weekly_report_file');
+            $table->string('weekly_report_file')->nullable();
+            $table->jsonb('images')->nullable();
             $table->unsignedTinyInteger('province');
             $table->unsignedTinyInteger('event_type_id');
             $table->timestamps();

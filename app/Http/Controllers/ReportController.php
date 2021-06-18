@@ -60,7 +60,6 @@ class ReportController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request);
         $validated = $request->validate([
             'province' => 'required',
             'event_type' => 'required',
@@ -83,6 +82,19 @@ class ReportController extends Controller
 
             $report->weekly_report_file = $path;
         }
+
+        if ($request->hasFile('images')) {
+            $images = [];
+            foreach($request->file('images') as $image) {
+                $name = $request->province . $request->year. $request->month . $request->week . '.' . $image->extension();
+                $path = $image->storeAs('weekly_report_images', $name);
+                $images[] = $path;
+            }
+
+            $report->images = json_encode($images);
+
+        }
+        
         
         $report->province = $request->province;
         $report->year = $request->year;

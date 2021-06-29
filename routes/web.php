@@ -39,4 +39,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');
     Route::get('/activities/province/{province_id}/{event_type_id}', [ReportController::class, 'province_activity'])->name('activities.province');
     Route::post('/specific_report', [ReportController::class, 'specific_report'])->name('specific_report');
+    Route::get('/images', [ReportController::class, 'load_all_images'])->name('images');
 });

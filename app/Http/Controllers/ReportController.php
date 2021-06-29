@@ -85,13 +85,13 @@ class ReportController extends Controller
 
         if ($request->hasFile('images')) {
             $images = [];
-            foreach($request->file('images') as $image) {
-                $name = $request->province . $request->year. $request->month . $request->week . '.' . $image->extension();
+            foreach($request->file('images') as $index => $image) {
+                $name = $request->province . $request->year. $request->month . $request->week . '_'. $index . '.' . $image->extension();
                 $path = $image->storeAs('weekly_report_images', $name);
                 $images[] = $path;
             }
 
-            $report->images = json_encode($images);
+            $report->images = $images;
 
         }
         
@@ -234,7 +234,7 @@ class ReportController extends Controller
             $reports = 'Empty';
         }
         else if        // dd($request->input());
- ($request->month && $request->month[0] == 'all' && $request->year && $request->year[0] == 'all' && $request->week && $request->week[0] == 'all' && $request->event_type && $request->event_type[0] == 'all' && $request->province && $request->province[0] == 'all') {
+            ($request->month && $request->month[0] == 'all' && $request->year && $request->year[0] == 'all' && $request->week && $request->week[0] == 'all' && $request->event_type && $request->event_type[0] == 'all' && $request->province && $request->province[0] == 'all') {
             // This section is working just fine.
             $reports = Report::all();
         }
@@ -282,5 +282,14 @@ class ReportController extends Controller
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
         return view('specific_report', compact('reports', 'provinces', 'fields', 'years', 'months', 'event_types', 'filter_params'));
 
+    }
+
+    public function load_all_images() {
+        $provinces = Province::all();
+        $reports = Report::where('images', '<>', null)->get();
+        $years = $this->get_list_of_years();
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+
+        return view('images', compact('reports', 'provinces', 'years', 'months'));
     }
 }

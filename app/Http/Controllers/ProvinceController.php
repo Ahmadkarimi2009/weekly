@@ -46,7 +46,7 @@ class ProvinceController extends Controller
         $province->name = $request->name;
         $province->save();
 
-        Session::flash('message', ['Insertion Successful!', 'Province Store Successfully!', 'success']);
+        Session::flash('message', ['Insertion Successful!', 'Province Stored Successfully!', 'success']);
         return redirect()->route('province.index');
     }
 

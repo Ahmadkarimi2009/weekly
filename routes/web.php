@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\FieldsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +37,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('field', FieldsController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('image', ImageController::class);
 
 
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');
     Route::get('/activities/province/{province_id}/{event_type_id}', [ReportController::class, 'province_activity'])->name('activities.province');
     Route::post('/specific_report', [ReportController::class, 'specific_report'])->name('specific_report');
-    Route::get('/images', [ReportController::class, 'load_all_images'])->name('images');
+    // Route::get('/images', [ReportController::class, 'load_all_images'])->name('images');
 });

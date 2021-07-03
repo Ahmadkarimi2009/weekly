@@ -17,7 +17,7 @@
         @elseif ($reports != "empty")
             @foreach ($event_types as $event)
                 <div class="mt-5" role="alert">
-                    <h2 class="">{{ $event->name }}</h2>
+                    <h2 class="text-success">{{ $event->name }}</h2>
                 </div>
                 <table class="table table-bordered" id="specific_report_table_{{$event->id}}">
                     <thead class="thead-dark">

@@ -3,7 +3,7 @@
 /public/images
 /public/testimonial_image
 /public/weekly_report_images
-/weekly_reports
+/public/weekly_reports
 /public/storage
 /storage/*.key
 /vendor

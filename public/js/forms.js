@@ -167,7 +167,7 @@ $(document).on('change', '#event_type_select_box', function(){
 $('.add_edit_report_form_submit_btn').on('click', function(e){
     let json_data = new Object;
     
-    $('.event_type_related_fields input').each(function(){
+    $('.event_type_related_fields input, .event_type_related_fields select, .event_type_related_fields textarea').each(function(){
 
         if ($(this).attr('type') == 'radio') {
             if ($(this).is(':checked')) {

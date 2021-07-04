@@ -35,9 +35,7 @@ $(document).ready(function() {
     
                     total_columns_in_this_table++;
                 }
-    
-                console.log(new_searchable_fields);
-    
+
                 for (let index = 0; index < $('#specific_report_table_' + each_event.id + ' thead th').length; index++) {
                     $('#specific_report_table_' + each_event.id + ' tfoot tr').append('<th scope="col"></th>')
                 }
@@ -99,8 +97,8 @@ $(document).ready(function() {
                 array_of_datatables_variable.push(reports_table);
     
                 $(document).on('draw.dt', '#specific_report_table_' + each_event.id, calculate_totals).on('draw.dt', function(){
-                    calculate_totals_for_one_table('specific_report_table_' + each_event.id);
-                }).on('init.dt', calculate_totals_for_one_table('specific_report_table_' + each_event.id));
+                    calculate_totals_for_each_actity('specific_report_table_' + each_event.id);
+                }).on('init.dt', calculate_totals_for_each_actity('specific_report_table_' + each_event.id));
     
                 $('table tfoot th select').addClass('form-control');
                 $('table').find('.dataTables_filter, .dataTables_info').addClass('do_not_print');
@@ -198,7 +196,7 @@ $(document).ready(function() {
         return total_of_totals;
     }
 
-    function calculate_totals_for_one_table(table) {
+    function calculate_totals_for_each_actity(table) {
         $('#' + table + ' tbody tr.group .grouping_title').each(function(){
             let province_name = $(this).text();
             if (province_name != '') {

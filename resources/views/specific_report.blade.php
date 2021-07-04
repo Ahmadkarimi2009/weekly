@@ -29,8 +29,11 @@
                             <th scope="col" class="hidable_columns column_year" data-target="column_year">Year</th>
                             @foreach ($event->fields as $event_field)
                                 @foreach ($fields as $field)
-                                    @if ($field->id == $event_field)
-                                        <th scope="col" class="{{ $field->machine_name}}">{{ $field->name }}</th>
+                                    {{-- Skip details column from display --}}
+                                    @if ($field->machine_name != 'details')
+                                        @if ($field->id == $event_field)
+                                            <th scope="col" class="{{ $field->machine_name}}">{{ $field->name }}</th>
+                                        @endif
                                     @endif
                                 @endforeach
                             @endforeach
@@ -54,13 +57,18 @@
                                     <td class="column_year">{{ $report->year }}</td>
                                     @foreach ($event->fields as $event_field)
                                         @foreach ($fields as $field)
-                                            @if ($field->id == $event_field)
-                                                @if (isset($report->json_data[$field->machine_name]))
-                                                    <td class="{{ $field->machine_name }} {{ $report->province_table->name }}">{{ $report->json_data[$field->machine_name] }}</td>
-                                                @else
-                                                    <td></td>
+
+                                            {{-- Skip details column from display --}}
+                                            @if ($field->machine_name != 'details')
+                                                @if ($field->id == $event_field)
+                                                    @if (isset($report->json_data[$field->machine_name]))
+                                                        <td class="{{ $field->machine_name }} {{ $report->province_table->name }}">{{ $report->json_data[$field->machine_name] }}</td>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
                                                 @endif
                                             @endif
+                                            
                                         @endforeach
                                     @endforeach
                     

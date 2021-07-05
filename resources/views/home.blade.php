@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="{{ route('specific_report') }}" method="post">
+    <form action="{{ route('specific_report') }}" method="post" id="specific_report_form">
         @csrf
         <div class="row">
             <div class="col-12">
@@ -80,8 +80,11 @@
                   </select>
                 </div>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-success w-100">Filter</button>
+            <div class="col-6">
+                <button type="button" class="btn btn-success w-100 specific_report_btns" data-route="{{ route('specific_report') }}">Interactive Report</button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-success w-100 specific_report_btns" data-route="{{ route('readonly_report') }}">View & Print Only</button>
             </div>
         </div>
     </form>
@@ -113,5 +116,12 @@
 </div>
 @endsection
 @section('js-scripts')
-    {{-- <script src="{{ asset('/js/multi_select.js') }}"></script> --}}
+    <script>
+        $(document).ready(function(){
+            $('.specific_report_btns').on('click', function(){
+                $('#specific_report_form').attr('action', $(this).data('route')).submit();
+
+            });
+        });
+    </script>
 @endsection

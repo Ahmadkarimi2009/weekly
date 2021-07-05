@@ -292,4 +292,133 @@ class ReportController extends Controller
 
         return view('images', compact('reports', 'provinces', 'years', 'months'));
     }
+
+
+    function readonly_specific_report(Request $request) {
+        if ($request->month == null && $request->year == null && $request->week == null && $request->event_type == null && $request->province == null) {
+            $reports = 'Empty';
+        }
+        else if        // dd($request->input());
+            ($request->month && $request->month[0] == 'all' && $request->year && $request->year[0] == 'all' && $request->week && $request->week[0] == 'all' && $request->event_type && $request->event_type[0] == 'all' && $request->province && $request->province[0] == 'all') {
+            // This section is working just fine.
+            $reports = Report::all();
+        }
+        else {
+            $year = $request->year;
+            $month = $request->month;
+            $week = $request->week;
+            $event_type = $request->event_type;
+            $province = $request->province;
+
+            $reports = Report::when($year, function($query, $year){
+                if ($year[0] != 'all') {
+                    return $query->whereIn('year', $year);
+                }
+            })
+            ->when($month, function($query, $month) {
+                if ($month[0] != 'all') {
+                    return $query->whereIn('month', $month);
+                }
+            })
+            ->when($week, function($query, $week) {
+                if ($week[0] != 'all') {
+                    return $query->whereIn('week', $week);
+                }
+            })
+            ->when($province, function($query, $province) {
+                if ($province[0] != 'all') {
+                    return $query->whereIn('province', $province);
+                }
+            })
+            ->when($event_type, function($query, $event_type) {
+                if ($event_type[0] != 'all') {
+                    return $query->whereIn('event_type_id', $event_type);
+                }
+            })
+            ->get();
+        }
+
+
+
+        $new_reports = [];
+
+        $event_types = EventType::all();
+        $fields = Fields::all()->toArray();
+        $provinces = Province::all()->toArray();
+
+        // Looping through the retreived reports so that we can create a curated and
+        // well structured report before sending it to the front end.
+        foreach($reports as $index => $report) {
+
+            // Extracting Name of province using the province ID in the report.
+            // The name is later used in generating the new array of reports where
+            // Province name is used instead of ID in as the key for the record.
+            $province_id = $report->province;
+            $province_name = current(array_filter($provinces, function($province) use ($province_id){
+                return $province_id == $province['id'];
+            }));
+            $province_name = $province_name['name'];
+            // End of extraction.
+
+
+            // Loop through the json data for this report.
+            foreach($report->json_data as $field_name => $field_value) {
+
+                // Extracting the field object that is currently being looped from
+                // the list of Fields.
+                $field_object = current(array_filter($fields, function($field) use ($field_name){
+                    return $field['machine_name'] == $field_name;
+                }));
+                // End of Extraction for the field object.
+
+                // Add those fields to the final collection that are meant to be displayed
+                // on the specific report and skip the trivial details.
+                if ($field_object['display_in_specific_report'] == 'true') {
+
+                    // If this field is the in_scc_or_field.
+                    if ($field_object['machine_name'] == 'in_scc_or_field') {
+                        if ($field_value == 'SCC') {
+                            if (!isset($new_reports[$report->event_type_id][$province_name]['SCC'])) {
+                                $new_reports[$report->event_type_id][$province_name]['SCC'] = 1;
+                            }
+                            else {
+                                $new_reports[$report->event_type_id][$province_name]['SCC'] += 1;
+                            }
+                        }
+                        else {
+                            if (!isset($new_reports[$report->event_type_id][$province_name]['Field'])) {
+                                $new_reports[$report->event_type_id][$province_name]['Field'] = 1;
+                            }
+                            else {
+                                $new_reports[$report->event_type_id][$province_name]['Field'] += 1;
+                            }
+                        }
+                    }
+
+                    // If this field is type of number.
+                    else if ($field_object['data_type'] == 'number') {
+                        if (!isset($new_reports[$report->event_type_id][$province_name][$field_name])) {
+                            $new_reports[$report->event_type_id][$province_name][$field_name] = (int) $field_value;
+                        }
+                        else {
+                            $new_reports[$report->event_type_id][$province_name][$field_name] += (int) $field_value;
+                        }
+                    }
+                    else {
+                        if (!isset($new_reports[$report->event_type_id][$province_name][$field_name])) {
+                            $new_reports[$report->event_type_id][$province_name][$field_name] = $field_value;
+                        }
+                        else {
+                            $new_reports[$report->event_type_id][$province_name][$field_name] .= ', ' . $field_value;
+                        }
+                    }
+                }
+            }
+        }
+
+        $filter_params = $request->input();
+        $years = $this->get_list_of_years();
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        return view('new_specific_report', compact('new_reports', 'provinces', 'fields', 'years', 'months', 'event_types', 'filter_params'));
+    }
 }

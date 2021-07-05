@@ -36,7 +36,9 @@ $(document).ready(function() {
                     total_columns_in_this_table++;
                 }
 
-                for (let index = 0; index < $('#specific_report_table_' + each_event.id + ' thead th').length; index++) {
+                for (let index = 0; index < $('#specific_report_table_' + each_event.id + ' thead th').not('.d-none').length; index++) {
+
+                    console.log('specific_report_table_' + each_event.id + ' is ' + $('#specific_report_table_' + each_event.id + ' thead th').not('.d-none').length);
                     $('#specific_report_table_' + each_event.id + ' tfoot tr').append('<th scope="col"></th>')
                 }
     
@@ -238,10 +240,19 @@ $(document).ready(function() {
 
     add_column_hiding_buttons_to_page();
 
+    /**
+     * Event Handling for hiding the columns.
+     */
     $(document).on('click', '.column_filter_buttons', function(){
         hide_or_display_selected_column($(this));
     });
 
+    /**
+     * This function receives the button that is clicked
+     * for hiding the necessary column. Based on the selected button,
+     * the required column gets hidden.
+     * @param {*} button 
+     */
     function hide_or_display_selected_column(button) {
 
         let status = $(button).data('status');
@@ -267,6 +278,8 @@ $(document).ready(function() {
             }
 
         }
+
+        console.log(searchable_fields);
 
 
         array_of_datatables_variable.forEach(element => {

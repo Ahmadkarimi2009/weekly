@@ -2,6 +2,7 @@
 @section('content')
     <div class="container mt-5">
       <div class="row">
+          @include('partials.errors')
           <form action="{{ $route }}" method="POST" class="row g-3 add_edit_report_form" enctype="multipart/form-data">
             @method($method)
             @csrf
@@ -80,7 +81,11 @@
                 <select class="form-control form-control-lg" name="month" id="months_select_box" aria-label="Select Month Select Box" required>
                     <option value="">Select Month</option>
                     @foreach ($months as $month)
-                      <option value="{{ $month }}" >{{ $month}}</option>
+                      <option value="{{ $month }}" 
+                        @if (date('F') == $month)
+                            selected="selected"
+                        @endif
+                      >{{ $month}}</option>
                     @endforeach
                 </select>
               </div>

@@ -1,20 +1,9 @@
 @extends('layouts.app')
 @section('content')
-    @if ($errors->any())
-      <div class="alert alert-danger alert-dismissible fade show">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-              @endforeach
-          </ul>
-      </div>
-    @endif
     <div class="container mt-5">
       <div class="row">
-          <form action="{{ $route }}" method="POST" class="w-100">
+        @include('partials.errors')
+        <form action="{{ $route }}" method="POST" class="w-100">
             @method($method)
             @csrf
             <div class="col-sm-12">

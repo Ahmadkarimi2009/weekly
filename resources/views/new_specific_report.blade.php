@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="m-5">
+        @include('partials/partials')
 
         <div id="statistics_section" class="row pl-2 pr-2">
 
@@ -42,7 +43,7 @@
                                         @foreach ($fields as $field)
                                             @if ($field['display_in_specific_report'] == 'true')
                                                 @if ($field['id'] == $activity_field)
-                                                    <td>{{ $province_record[$field['machine_name']] }}</td>
+                                                    <td class="{{ $field['machine_name'] }} {{ $field['data_type'] }}">{!! $province_record[$field['machine_name']] !!}</td>
                                                 @endif
                                             @endif
                                         @endforeach
@@ -52,6 +53,26 @@
                         @endif
                        
                     </tbody>
+                    <tfoot class="bg-light text-info">
+                        @if ($extracted_report != null)
+                            <tr>
+                                <th>Province</th>
+                                @foreach ($activity->fields as $activity_field)
+                                    @foreach ($fields as $field)
+                                        @if ($field['display_in_specific_report'] == 'true')
+                                            @if ($field['id'] == $activity_field)
+                                                <th scope="col">{{ $field['name']}}
+                                                    @if ($field['data_type'] == 'number')
+                                                        = <span class="{{ $field['machine_name'] }}"></span>
+                                                    @endif
+                                                </th>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </tr>
+                        @endif
+                    </tfoot>
                 </table>
             @endforeach
         @endif
@@ -59,5 +80,5 @@
 @endsection
 
 @section('js-scripts')
-    <script src="{{ asset('/js/snippet.js') }}"></script>
+    <script src="{{ asset('/js/new_specific_report.js') }}"></script>
 @endsection

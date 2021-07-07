@@ -406,10 +406,10 @@ class ReportController extends Controller
                     }
                     else {
                         if (!isset($new_reports[$report->event_type_id][$province_name][$field_name])) {
-                            $new_reports[$report->event_type_id][$province_name][$field_name] = $field_value;
+                            $new_reports[$report->event_type_id][$province_name][$field_name] = '* ' .$field_value;
                         }
                         else {
-                            $new_reports[$report->event_type_id][$province_name][$field_name] .= ', ' . $field_value;
+                            $new_reports[$report->event_type_id][$province_name][$field_name] .= '<br>* ' . $field_value;
                         }
                     }
                 }

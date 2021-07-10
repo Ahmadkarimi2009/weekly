@@ -10,6 +10,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\FieldsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('field', FieldsController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('image', ImageController::class);
+    Route::resource('staff', StaffController::class);
 
 
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');

@@ -49,36 +49,6 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item"> <a class="nav-link" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Provinces
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg>
-                    </a>
-                    <div class="dropdown-menu" id="dropdown-menu2" aria-labelledby="navbarDropdown2">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row d-flex tab">
-                                        <div class="fa-icon text-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-rule="evenodd" d="M2.25 4a.25.25 0 00-.25.25v15.5c0 .138.112.25.25.25h3.178L14 10.977a1.75 1.75 0 012.506-.032L22 16.44V4.25a.25.25 0 00-.25-.25H2.25zm3.496 17.5H21.75a1.75 1.75 0 001.75-1.75V4.25a1.75 1.75 0 00-1.75-1.75H2.25A1.75 1.75 0 00.5 4.25v15.5c0 .966.784 1.75 1.75 1.75h3.496zM22 19.75v-1.19l-6.555-6.554a.25.25 0 00-.358.004L7.497 20H21.75a.25.25 0 00.25-.25zM9 9.25a1.75 1.75 0 11-3.5 0 1.75 1.75 0 013.5 0zm1.5 0a3.25 3.25 0 11-6.5 0 3.25 3.25 0 016.5 0z"></path></svg>
-                                        </div>
-                                        <div class="d-flex flex-column"> <a class="dropdown-item" href="{{ route('province.index') }}">
-                                                <h6 class="mb-0">View Provinces</h6> <small class="text-muted">All tools</small>
-                                            </a> </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row d-flex tab">
-                                        <div class="fa-icon text-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 13.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"></path><path fill-rule="evenodd" d="M19.071 3.429C15.166-.476 8.834-.476 4.93 3.429c-3.905 3.905-3.905 10.237 0 14.142l.028.028 5.375 5.375a2.359 2.359 0 003.336 0l5.403-5.403c3.905-3.905 3.905-10.237 0-14.142zM5.99 4.489A8.5 8.5 0 0118.01 16.51l-5.403 5.404a.859.859 0 01-1.214 0l-5.378-5.378-.002-.002-.023-.024a8.5 8.5 0 010-12.02z"></path></svg>
-                                        </div>
-                                        <div class="d-flex flex-column"> <a class="dropdown-item" href="{{ route('province.create') }}">
-                                                <h6 class="mb-0">Add New Province</h6> <small class="text-muted">All tools</small>
-                                            </a> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="" id="" role="button" ">MoUs</a>
                 </li>

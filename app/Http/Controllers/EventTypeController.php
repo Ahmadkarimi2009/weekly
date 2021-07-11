@@ -15,7 +15,7 @@ class EventTypeController extends Controller
     {
       $this->fields = Fields::all();
       $this->event_types = EventType::all();
-      $this->store_route = route('event_types.store');
+      $this->store_route = route('activity_type.store');
       $this->store_method = 'POST';
       $this->update_method = 'PUT';
     }
@@ -59,8 +59,8 @@ class EventTypeController extends Controller
         $event->fields = $request->fields;
         $event->save();
 
-        Session::flash('message', ['Insertion Successful!', 'Event Type Stored Successfully!', 'success']);
-        return redirect()->route('event_types.index');
+        Session::flash('message', ['Insertion Successful!', 'Activity Type Stored Successfully!', 'success']);
+        return redirect()->route('activity_type.index');
     }
 
     /**
@@ -80,10 +80,10 @@ class EventTypeController extends Controller
      * @param  \App\Models\EventType  $eventType
      * @return \Illuminate\Http\Response
      */
-    public function edit(EventType $eventType)
+    public function edit(EventType $activity_type)
     {
-        $old = $eventType;
-        $update_route = route('event_types.update', $eventType);
+        $old = $activity_type;
+        $update_route = route('activity_type.update', $activity_type->id);
         return view('add_edit_event', ['fields' => $this->fields, 'route' => $update_route, 'method' => $this->update_method, 'old' => $old]);
     }
 
@@ -100,8 +100,8 @@ class EventTypeController extends Controller
         $eventType->fields = $request->fields;
         $eventType->save();
 
-        Session::flash('message', ['Update Successful!', 'Event Type Updated Successfully!', 'success']);
-        return redirect()->route('event_types.index');
+        Session::flash('message', ['Update Successful!', 'Activity Type Updated Successfully!', 'success']);
+        return redirect()->route('activity_type.index');
     }
 
     /**
@@ -113,7 +113,7 @@ class EventTypeController extends Controller
     public function destroy(EventType $eventType)
     {
         $eventType->delete();
-        Session::flash('message', ['Deletion Successful!', 'Event Type Deleted Successfully!', 'success']);
-        return redirect()->route('event_types.index');
+        Session::flash('message', ['Deletion Successful!', 'Activity Type Deleted Successfully!', 'success']);
+        return redirect()->route('activity_type.index');
     }
 }

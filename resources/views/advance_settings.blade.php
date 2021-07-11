@@ -17,6 +17,11 @@
                     <a href="{{ route('categories.index') }}" class="btn btn-success text-light">View list of categories</a>
                     <a href="{{ route('categories.create') }}" class="btn btn-info text-light">Add new category</a>
                 </fieldset>
+                <fieldset class="border p-2 mb-3">
+                    <legend class="w-auto">Activities</legend>
+                    <a href="{{ route('activity_type.index') }}" class="btn btn-success text-light">View list of activity types</a>
+                    <a href="{{ route('activity_type.create') }}" class="btn btn-info text-light">Add new actity type</a>
+                </fieldset>
             </div>
         </div>
     </div>

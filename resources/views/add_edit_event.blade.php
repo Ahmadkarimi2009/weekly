@@ -13,7 +13,7 @@
                   @if (isset($old))
                     value="{{ $old->name }}"
                   @endif
-                name="name" id="event_type_name" placeholder="The name of the Event Type" required>
+                name="name" id="event_type_name" placeholder="The name of the Activity Type" required>
               </div>
             </div>
             <div class="col-sm-12">

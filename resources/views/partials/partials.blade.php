@@ -55,7 +55,7 @@
     @endif
 
     <br>
-    Event Type:
+    Activity Type:
     @if (isset($filter_params['event_type']))
         @foreach ($filter_params['event_type'] as $event_type_id)
             @if ($event_type_id == 'all')

@@ -23,9 +23,9 @@
             </div>
             <div class="col-sm-12" id="event_type_select_box_container">
               <div class="form-group pt-3">
-                <label for="event_type_select_box">Event Type</label>
-                <select class="form-control form-control-lg" name="event_type" id="event_type_select_box" aria-label="Select The Event Type" required>
-                  <option selected value="">Select Event Type</option>
+                <label for="event_type_select_box">Activity Type</label>
+                <select class="form-control form-control-lg" name="event_type" id="event_type_select_box" aria-label="Select The Activity Type" required>
+                  <option selected value="">Select Activity Type</option>
                   @foreach ($event_types as $event_type)
                     <option value="{{ $event_type->id }}"
                       @if (isset($old) && $old->event_type_id == $event_type->id)

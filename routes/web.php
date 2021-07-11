@@ -34,7 +34,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::resource('report', ReportController::class);
     Route::resource('province', ProvinceController::class);
-    Route::resource('event_types', EventTypeController::class);
+    Route::resource('activity_type', EventTypeController::class);
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('field', FieldsController::class);
     Route::resource('categories', CategoryController::class);

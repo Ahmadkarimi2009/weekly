@@ -60,18 +60,18 @@ $(document).ready(function(){
  */
 $(document).on('change', '#event_type_select_box', function(){
 
-    // Remove previously added fields that were from pervious event type.
+    // Remove previously added fields that were from pervious Activity Type.
     $('.event_type_related_fields').remove();
 
-    // Get the ID of this event type.
+    // Get the ID of this Activity Type.
     let chosen_event_type_id = $(this).val();
 
-    // Get the entity for this chosen event type.
+    // Get the entity for this chosen Activity Type.
     let chosen_event_type_fields = event_types.find(ob => ob.id == chosen_event_type_id).fields;
 
     let input_tag = "";
 
-    // Loop through IDs of the fields for this event type.
+    // Loop through IDs of the fields for this Activity Type.
     chosen_event_type_fields.forEach(function(field_id){
 
         // Get access to the actual field using the current field id.

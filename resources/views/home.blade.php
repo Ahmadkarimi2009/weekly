@@ -67,8 +67,8 @@
             </div>
             <div class="col-sm-12" id="event_type_select_box_container">
                 <div class="form-group pt-3">
-                  <label for="event_type_select_box">Event Type</label>
-                  <select class="form-control form-control-lg" name="event_type[]" id="event_type_select_box" aria-label="Select The Event Type" multiple>
+                  <label for="event_type_select_box">Activity Type</label>
+                  <select class="form-control form-control-lg" name="event_type[]" id="event_type_select_box" aria-label="Select The Activity Type" multiple>
                     <option selected value="all">All</option>
                     @foreach ($event_types as $event_type)
                       <option value="{{ $event_type->id }}"

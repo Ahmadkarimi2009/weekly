@@ -404,6 +404,24 @@ class ReportController extends Controller
                             $new_reports[$report->event_type_id][$province_name][$field_name] += (int) $field_value;
                         }
                     }
+
+                    // This section adds the provine name instead of the ID in case it is the
+                    // "with_province" field that is being iterated.
+                    else if ($field_object['machine_name'] == 'with_province') {
+                        $with_province_name = $field_value;
+                        $with_province_name = current(array_filter($provinces, function($province) use ($with_province_name){
+                            return $with_province_name == $province['id'];
+                        }));
+                        $with_province_name = $with_province_name['name'];
+
+
+                        if (!isset($new_reports[$report->event_type_id][$province_name][$field_name])) {
+                            $new_reports[$report->event_type_id][$province_name][$field_name] = '* ' . $with_province_name;
+                        }
+                        else {
+                            $new_reports[$report->event_type_id][$province_name][$field_name] .= ' * ' . $with_province_name;
+                        }
+                    }
                     else {
                         if (!isset($new_reports[$report->event_type_id][$province_name][$field_name])) {
                             $new_reports[$report->event_type_id][$province_name][$field_name] = '* ' .$field_value;

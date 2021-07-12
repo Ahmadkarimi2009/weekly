@@ -50,7 +50,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="" id="" role="button" ">MoUs</a>
+                    <a class="nav-link" href="{{ route('mou.index') }}" id="" role="button" ">MoUs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('image.index') }}" id="" role="button" ">Gallery</a>

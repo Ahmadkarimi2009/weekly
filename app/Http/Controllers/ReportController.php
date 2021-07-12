@@ -47,7 +47,7 @@ class ReportController extends Controller
         $event_types = EventType::all();
         $fields = Fields::all();
         $years = $this->get_list_of_years();
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return view('add_edit_report', compact('route', 'method', 'provinces', 'years', 'months', 'event_types', 'fields'));
     }
 
@@ -153,7 +153,7 @@ class ReportController extends Controller
         $method = 'PUT';
         $provinces = Province::all();
         $years = $this->get_list_of_years();
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return view('add_edit_report', compact('route', 'method', 'provinces', 'years', 'months', 'old'));
     }
 
@@ -210,7 +210,7 @@ class ReportController extends Controller
         $fields = Fields::all();
         $years = $this->get_list_of_years();
         $province = "All Provinces";
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('reports', compact('reports', 'provinces', 'fields', 'event_type', 'years', 'months', 'province'));
     }
@@ -223,7 +223,7 @@ class ReportController extends Controller
         $provinces = Province::all();
         $fields = Fields::all();
         $years = $this->get_list_of_years();
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('reports', compact('reports', 'provinces', 'fields', 'event_type', 'years', 'months', 'province'));
     }
@@ -279,7 +279,7 @@ class ReportController extends Controller
         $provinces = Province::all();
         $fields = Fields::all();
         $years = $this->get_list_of_years();
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return view('specific_report', compact('reports', 'provinces', 'fields', 'years', 'months', 'event_types', 'filter_params'));
 
     }
@@ -288,7 +288,7 @@ class ReportController extends Controller
         $provinces = Province::all();
         $reports = Report::where('images', '<>', null)->get();
         $years = $this->get_list_of_years();
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('images', compact('reports', 'provinces', 'years', 'months'));
     }
@@ -436,7 +436,7 @@ class ReportController extends Controller
 
         $filter_params = $request->input();
         $years = $this->get_list_of_years();
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return view('new_specific_report', compact('new_reports', 'provinces', 'fields', 'years', 'months', 'event_types', 'filter_params'));
     }
 }

@@ -23,7 +23,7 @@ class TestimonialController extends Controller
         $provinces = Province::all();
         $event_types = EventType::all();
         $years = $this->get_list_of_years();
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return view('testimonials', compact('testimonials', 'provinces', 'event_types', 'years', 'months'));
     }
 

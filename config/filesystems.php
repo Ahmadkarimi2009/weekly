@@ -68,6 +68,7 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('staff_image') => storage_path('app/staff_image'),
+        public_path('mous') => storage_path('app/mous'),
         public_path('weekly_reports') => storage_path('app/weekly_reports'),
         public_path('testimonial_image') => storage_path('app/testimonial_image'),
         public_path('weekly_report_images') => storage_path('app/weekly_report_images'),

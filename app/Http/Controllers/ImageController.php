@@ -26,7 +26,7 @@ class ImageController extends Controller
         $images = Image::all();
         $reports = Report::where('images', '<>', null)->get();
         $years = $this->get_list_of_years();
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('images', compact('reports', 'provinces', 'years', 'months', 'images'));
     }

@@ -25,6 +25,8 @@
     <link href="{{ asset('/css/datatable_bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/datatable_buttons.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/printings.css') }}" rel="stylesheet">
+    @yield('css-libs')
+
 </head>
 <body>
     <div id="app">

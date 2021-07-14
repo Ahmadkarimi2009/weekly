@@ -60,27 +60,9 @@ class ImageController extends Controller
             'category' => 'required',
             'images' => 'required',
         ]);
-
-        foreach($request->file('images') as $index => $image) {
-            $save_image = new Image;
-            $name = microtime(true) . '_' . rand(100000000, 9999999999) . '.' . $image->getClientOriginalExtension();
-            $path = $image->storeAs('images', $name);
-
-            $save_image->category_id = $request->category;
-            $save_image->province_id = $request->province;
-            if (isset($request->year)) {
-                $save_image->year = $request->year;
-            }
-
-            if (isset($request->province)) {
-                $save_image->province_id = $request->province;
-            }
-            $save_image->path = $path;
-            $save_image->save();
-        }
-
+        $this->store_images($request);
         Session::flash('message', ["Insertion Successful!", "Image(s) Uploaded Successfully!", "success"]);
-        return redirect()->route('images.index');
+        return redirect()->route('image.index');
     }
 
     /**

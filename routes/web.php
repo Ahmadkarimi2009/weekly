@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\MouController;
+use App\Http\Controllers\ConferenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('image', ImageController::class);
     Route::resource('staff', StaffController::class);
     Route::resource('mou', MouController::class);
+    Route::resource('conference', ConferenceController::class);
 
 
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');

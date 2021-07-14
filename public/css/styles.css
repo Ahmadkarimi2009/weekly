@@ -27,6 +27,20 @@
     height: 100px;
 }
 
-.mou_file_cards {
+.mou_file_cards,
+.conferences_card,
+.search_bars{
     border-radius: 20px;
+}
+
+.conferences_card_header {
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+}
+
+.modal-backdrop
+{
+    opacity:0.9 !important;
+    background-color: seagreen;
+    transition:0s ease;
 }

@@ -6,6 +6,7 @@
 /public/weekly_reports
 /public/storage
 /public/mous
+/public/staff_image
 /storage/*.key
 /vendor
 .env

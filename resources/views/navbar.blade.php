@@ -115,7 +115,7 @@
                     <a class="nav-link" href="" id="" role="button" ">Success Stories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="" id="" role="button" ">Conference</a>
+                    <a class="nav-link" href="{{ route('conference.index') }}" id="" role="button" ">Conference</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="" id="" role="button" ">Blog</a>

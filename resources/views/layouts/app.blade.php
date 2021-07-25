@@ -43,6 +43,7 @@
     <script src="{{ asset('/js/datatable/datatable_bootstrap.js') }}"></script>
     <script src="{{ asset('/js/sweetalert.js') }}"></script>
     <script src="{{ asset('/js/forms.js') }}"></script>
+    <script src="{{ asset('/js/load_in_all_pages.js') }}"></script>
     @yield('js-scripts')
 </body>
 </html>

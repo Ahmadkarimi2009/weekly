@@ -3,6 +3,7 @@
 namespace App\Http\Traits;
 use App\Models\Student;
 use App\Models\Image;
+use App\Models\File;
 use Illuminate\Http\Request;
 
 trait CommonFunctions {
@@ -34,6 +35,30 @@ trait CommonFunctions {
             }
             $save_image->path = $path;
             $save_image->save();
+            $paths[] = $path;
+        }
+
+        return $paths;
+    }
+
+    public function store_files(Request $request) {
+        $paths = [];
+        foreach($request->file('files') as $index => $image) {
+            $save_file = new File;
+            $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '_' . microtime(true) . '.' . $image->getClientOriginalExtension();
+            $path = $image->storeAs('files', $name);
+
+            $save_file->category_id = $request->category;
+            if (isset($request->year)) {
+                $save_file->year = $request->year;
+            }
+
+            if (isset($request->province)) {
+                $save_file->province_id = $request->province;
+            }
+            $save_file->path = $path;
+            $save_file->name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $save_file->save();
             $paths[] = $path;
         }
 

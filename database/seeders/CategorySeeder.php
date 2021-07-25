@@ -20,6 +20,10 @@ class CategorySeeder extends Seeder
                 'parent' => null
             ],
             [
+                'name' => 'Files',
+                'parent' => null
+            ],
+            [
                 'name' => 'children',
                 'parent' => 1,
             ],
@@ -28,8 +32,24 @@ class CategorySeeder extends Seeder
                 'parent' => 1,
             ],
             [
-                'name' => 'Files',
-                'parent' => null
+                'name' => 'Weekly Reports',
+                'parent' => 2
+            ],
+            [
+                'name' => 'Monthly Reports',
+                'parent' => 2
+            ],
+            [
+                'name' => 'Banners',
+                'parent' => 2
+            ],
+            [
+                'name' => 'Brochures',
+                'parent' => 2
+            ],
+            [
+                'name' => 'MoU',
+                'parent' => 2
             ]
         ];
 

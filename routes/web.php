@@ -13,6 +13,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\MouController;
 use App\Http\Controllers\ConferenceController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('image', ImageController::class);
     Route::resource('staff', StaffController::class);
     Route::resource('mou', MouController::class);
+    Route::resource('file', FileController::class);
     Route::resource('conference', ConferenceController::class);
 
 

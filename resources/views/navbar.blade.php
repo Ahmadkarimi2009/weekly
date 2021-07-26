@@ -106,7 +106,7 @@
                     <a class="nav-link" href="{{ route('testimonial.index') }}" id="" role="button" ">Testimonials</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="" id="" role="button" ">Trainings</a>
+                    <a class="nav-link" href="{{ route('training.index') }}" id="" role="button" ">Trainings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="" id="" role="button" ">Trips</a>

@@ -15,6 +15,7 @@ use App\Http\Controllers\MouController;
 use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\TrainingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('mou', MouController::class);
     Route::resource('file', FileController::class);
     Route::resource('conference', ConferenceController::class);
+    Route::resource('training', TrainingController::class);
 
 
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');

@@ -20,7 +20,7 @@ class CategorySeeder extends Seeder
                 'parent' => null
             ],
             [
-                'name' => 'Files',
+                'name' => 'files',
                 'parent' => null
             ],
             [
@@ -49,6 +49,10 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name' => 'MoU',
+                'parent' => 2
+            ],
+            [
+                'name' => 'training',
                 'parent' => 2
             ]
         ];

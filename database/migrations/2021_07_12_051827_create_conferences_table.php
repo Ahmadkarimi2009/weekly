@@ -20,9 +20,6 @@ class CreateConferencesTable extends Migration
             $table->string('title');
             $table->string('province');
             $table->text('details')->nullable();
-            $table->jsonb('images')->nullable();
-            $table->jsonb('files')->nullable();
-            $table->jsonb('videos')->nullable();
             $table->timestamps();
         });
     }

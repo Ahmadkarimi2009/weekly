@@ -30,13 +30,13 @@ class FileController extends Controller
      */
     public function create()
     {
-        $files_parent_category = Category::where('name', 'files')->first();
-        $categories = Category::where('parent', $files_parent_category->id)->get();
+        $parent_categories = Category::where('parent', 'yes')->get();
+        $child_categories = Category::where('parent', 'no')->get();
         $provinces = Province::all();
 
         $route = route('file.store');
         $method = "POST";
-        return view('add_edit_files', compact('categories', 'route', 'method', 'provinces'));
+        return view('add_edit_files', compact('parent_categories', 'child_categories', 'route', 'method', 'provinces'));
     }
 
     /**
@@ -49,10 +49,15 @@ class FileController extends Controller
     {
         // dd($request->all());
         $validated = $request->validate([
-            'category' => 'required',
+            'parent_category' => 'required',
+            'child_category' => 'required',
             'files' => 'required',
         ]);
-        $this->store_files($request);
+
+        foreach($request['files'] as $file) {
+            $save_file = $this->store_this_file($request, $file);
+            $save_file->save();
+        }
         Session::flash('message', ["Insertion Successful!", "File(s) Uploaded Successfully!", "success"]);
         return redirect()->route('file.index');
     }
@@ -77,13 +82,13 @@ class FileController extends Controller
     public function edit(File $file)
     {
         $old = $file;
-        $files_parent_category = Category::where('name', 'files')->first();
-        $categories = Category::where('parent', $files_parent_category->id)->get();
+        $parent_categories = Category::where('parent', 'yes')->get();
+        $child_categories = Category::where('parent', 'no')->get();
         $provinces = Province::all();
 
         $route = route('file.update', $file);
         $method = "PUT";
-        return view('add_edit_files', compact('categories', 'route', 'method', 'provinces', 'old'));
+        return view('add_edit_files', compact('parent_categories', 'child_categories', 'route', 'method', 'provinces', 'old'));
     }
 
     /**
@@ -95,7 +100,10 @@ class FileController extends Controller
      */
     public function update(Request $request, File $file)
     {
-        //
+        $file->parent_category_id = $request->parent_category_id;
+        $file->child_category_id = $request->child_category_id;
+        $file->year = $request->year;
+        $file->save();
     }
 
     /**

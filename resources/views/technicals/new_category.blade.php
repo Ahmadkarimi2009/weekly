@@ -18,19 +18,23 @@
             </div>
             <div class="col-sm-12">
                 <div class="form-group pt-3">
-                  <label for="fields_select_box">List of Parent Categories</label>
-                  <select class="form-control form-control-lg" name="parent" id="fields_select_box" aria-label="Select Field Select Box">
-                      <option value="">None</option>
-                      @foreach ($categories as $category)
-                        <option value="{{ $category->id }}"
-                          @if (isset($old))
-                            @if ($old->parent == $category->id)
-                            selected="selected"
-                            @endif
-                          @endif
-                        >{{ $category->name }}</option>
-                      @endforeach
-                  </select>
+                  <label for="fields_select_box">Is it a parent category</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="parent" id="yes_option_for_parent" value="yes" checked>
+                    <label class="form-check-label" for="yes_option_for_parent">
+                      YES
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="parent" id="no_option_for_parent" value="no"
+                      @if (isset($old) && $old->parent == "no")
+                        checked
+                      @endif
+                    >
+                    <label class="form-check-label" for="no_option_for_parent">
+                      NO
+                    </label>
+                  </div>
                 </div>
               </div>
             <div class="col-sm-12">

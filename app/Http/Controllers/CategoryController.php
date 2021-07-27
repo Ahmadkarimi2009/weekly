@@ -26,10 +26,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent', null)->get();
         $method = "POST";
         $route = route('categories.store');
-        return view('technicals.new_category', compact('categories', 'method', 'route'));
+        return view('technicals.new_category', compact('method', 'route'));
     }
 
     /**
@@ -46,10 +45,7 @@ class CategoryController extends Controller
 
         $category = new Category;
         $category->name = $request->name;
-        if(isset($request->parent)) {
-            $category->parent = $request->parent;
-        }
-
+        $category->parent = $request->parent;
         $category->save();
         Session::flash('message', ["Insertion Successful!", "Category Inserted Successfully!", "success"]);
         return redirect()->route('categories.index');

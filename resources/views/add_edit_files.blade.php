@@ -11,20 +11,20 @@
                 <label for="image_year">Year</label>
                 <input type="year" class="form-control form-control-lg"
                   @if (isset($old))
-                    value="{{ $old->name }}"
+                    value="{{ $old->year }}"
                   @endif
-                name="year" id="image_year" placeholder="The year the photo is taken" required>
+                name="year" id="image_year" placeholder="The year this file is from" required>
               </div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group pt-3">
-                  <label for="categories_select_box">List of Parent Categories</label>
-                  <select class="form-control form-control-lg" name="category" id="categories_select_box" aria-label="Select Field Select Box">
+                  <label for="parent_categories_select_box">Type of file</label>
+                  <select class="form-control form-control-lg" name="parent_category" id="parent_categories_select_box" aria-label="Select Field Select Box">
                       <option value="">None</option>
-                      @foreach ($categories as $category)
+                      @foreach ($parent_categories as $category)
                         <option value="{{ $category->id }}"
                           @if (isset($old))
-                            @if ($old->category_id == $category->id)
+                            @if ($old->parent_category_id == $category->id)
                               selected="selected"
                             @endif
                           @endif
@@ -35,17 +35,17 @@
             </div>
             <div class="col-sm-12">
                 <div class="form-group pt-3">
-                  <label for="provinces_select_box">List of Provinces</label>
-                  <select class="form-control form-control-lg" name="province" id="provinces_select_box" aria-label="Select Field Select Box">
+                  <label for="child_categories_select_box">Category of file</label>
+                  <select class="form-control form-control-lg" name="child_category" id="child_categories_select_box" aria-label="Select child category Select Box">
                       <option value="">None</option>
-                      @foreach ($provinces as $province)
-                        <option value="{{ $province->id }}"
+                      @foreach ($child_categories as $category)
+                        <option value="{{ $category->id }}"
                           @if (isset($old))
-                            @if ($old->province_id == $province->id)
-                            selected="selected"
+                            @if ($old->child_category_id == $category->id)
+                              selected="selected"
                             @endif
                           @endif
-                        >{{ $province->name }}</option>
+                        >{{ $category->name }}</option>
                       @endforeach
                   </select>
                 </div>

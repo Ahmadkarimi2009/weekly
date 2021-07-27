@@ -18,7 +18,14 @@ class Conference extends Model
         'images' => 'array',
     ];
 
+    protected $with = ['file_objects'];
+
     function province_table() {
         return $this->belongsTo(Province::class, 'province');
+    }
+
+    public function file_objects()
+    {
+        return $this->morphMany(File::class, 'parent_table');
     }
 }

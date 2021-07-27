@@ -17,7 +17,7 @@
                         @endif
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('conference.show', $conf->id) }}">View More...</a>
+                        <a href="{{ route('conferences.show', $conf->id) }}">View More...</a>
                     </div>
                 </div>
             @endforeach

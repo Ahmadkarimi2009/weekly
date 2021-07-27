@@ -17,43 +17,47 @@ class CategorySeeder extends Seeder
         $categories = [
             [
                 'name' => 'images',
-                'parent' => null
+                'parent' => 'yes'
             ],
             [
                 'name' => 'files',
-                'parent' => null
+                'parent' => 'yes'
+            ],
+            [
+                'name' => 'videos',
+                'parent' => 'yes'
             ],
             [
                 'name' => 'children',
-                'parent' => 1,
+                'parent' => 'no',
             ],
             [
                 'name' => 'conference',
-                'parent' => 1,
+                'parent' => 'no',
             ],
             [
                 'name' => 'Weekly Reports',
-                'parent' => 2
+                'parent' => 'no'
             ],
             [
                 'name' => 'Monthly Reports',
-                'parent' => 2
+                'parent' => 'no'
             ],
             [
                 'name' => 'Banners',
-                'parent' => 2
+                'parent' => 'no'
             ],
             [
                 'name' => 'Brochures',
-                'parent' => 2
+                'parent' => 'no'
             ],
             [
                 'name' => 'MoU',
-                'parent' => 2
+                'parent' => 'no'
             ],
             [
                 'name' => 'training',
-                'parent' => 2
+                'parent' => 'no'
             ]
         ];
 

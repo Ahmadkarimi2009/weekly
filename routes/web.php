@@ -47,7 +47,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('staff', StaffController::class);
     Route::resource('mou', MouController::class);
     Route::resource('file', FileController::class);
-    Route::resource('conference', ConferenceController::class);
+    Route::resource('conferences', ConferenceController::class);
     Route::resource('training', TrainingController::class);
 
 

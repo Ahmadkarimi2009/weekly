@@ -53,9 +53,6 @@ trait CommonFunctions {
                 $save_file->year = $request->year;
             }
 
-            if (isset($request->province)) {
-                $save_file->province_id = $request->province;
-            }
             $save_file->path = $path;
             $save_file->name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $save_file->save();
@@ -63,5 +60,22 @@ trait CommonFunctions {
         }
 
         return $paths;
+    }
+
+    public function store_this_file($group, $file) {
+        $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_' . microtime(true) . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('files', $name);
+        $year = isset($group['year']) ? $group['year'] : '';
+        $save_file = new File(
+            [
+                'path' => $path,
+                'name' => $name,
+                'parent_category_id' => $group['parent_category'],
+                'child_category_id' => $group['child_category'],
+                'year' => $year
+            ]
+        );
+
+        return $save_file;
     }
 }

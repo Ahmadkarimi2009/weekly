@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mou;
+use App\Models\Category;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Http\Traits\CommonFunctions;
@@ -62,14 +63,17 @@ class MouController extends Controller
         $mou->province = $request->province;
         $mou->year = $request->year;
         $mou->month = $request->month;
-
-        if ($request->hasFile('file')) {
-            $name = $request->province . '_' . $request->year . microtime(true) . '.' . $request->file->getClientOriginalExtension();
-            $path = $request->file->storeAs('mous', $name);
-            $mou->file = $path;
-        }
-
         $mou->save();
+
+        $file_category_id = Category::select('id')->where('name', 'files')->first()->id;
+        $mou_category_id = Category::select('id')->where('name', 'mou')->first()->id;
+        $request->request->add(['parent_category' => $file_category_id, 'child_category' => $mou_category_id]);
+
+        // Store the files and return the model to be saved.
+        $file_obj = $this->store_this_file($request, $request->file);
+
+        $mou->file_objects()->save($file_obj);
+
         Session::flash('message', ["Insertion Successful!", "MoU added Successfully!", "success"]);
         return redirect()->route('mou.index');
     }
@@ -99,6 +103,7 @@ class MouController extends Controller
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         $provinces = Province::all();
         $old = $mou;
+
         return view('add_edit_mou', compact('route', 'method', 'years', 'months', 'mou', 'provinces', 'old'));
     }
 

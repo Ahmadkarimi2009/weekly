@@ -60,9 +60,9 @@
                 @if (isset($old))
                   <div id="previous_file">
                     <br>
-                    <span>Curent File: </span>
+                    <span>Current File: </span>
                     <span class="badge badge-info"></span></label>
-                    <a href="{{ asset($mou->file) }}" class="btn btn-info text-white btn-sm" target="_blank">{{ str_replace('mous/', '', $old->file) }}</a>
+                    <a href="{{ asset($old->file_objects[0]->path ) }}" class="btn btn-info text-white btn-sm" target="_blank">{{ $old->file_objects[0]->name }}</a>
                   </div>
                 @endif
               </div>

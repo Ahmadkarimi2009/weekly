@@ -36,23 +36,23 @@ class CategorySeeder extends Seeder
                 'parent' => 'no',
             ],
             [
-                'name' => 'Weekly Reports',
+                'name' => 'weekly reports',
                 'parent' => 'no'
             ],
             [
-                'name' => 'Monthly Reports',
+                'name' => 'monthly reports',
                 'parent' => 'no'
             ],
             [
-                'name' => 'Banners',
+                'name' => 'banners',
                 'parent' => 'no'
             ],
             [
-                'name' => 'Brochures',
+                'name' => 'brochures',
                 'parent' => 'no'
             ],
             [
-                'name' => 'MoU',
+                'name' => 'mou',
                 'parent' => 'no'
             ],
             [

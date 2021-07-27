@@ -6,7 +6,7 @@
                 <div class="col-3">
                     <div class="card mou_file_cards">
                         <div class="card-body">
-                            <a href="{{ asset($mou->file) }}" class="btn" target="_blank">
+                            <a href="{{ asset($mou->file_objects[0]->path ) }}" class="btn" target="_blank">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-100 h-100">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                     <polyline points="14 2 14 8 20 8"/>

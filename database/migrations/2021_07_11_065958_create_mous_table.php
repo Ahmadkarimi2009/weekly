@@ -18,7 +18,6 @@ class CreateMousTable extends Migration
             $table->string('province');
             $table->year('year');
             $table->string('month');
-            $table->string('file');
             $table->timestamps();
         });
     }

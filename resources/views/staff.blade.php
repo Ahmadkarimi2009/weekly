@@ -1,9 +1,13 @@
 @extends('layouts.app')
+@section('css-libs')
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{ asset('/css/staff_profiles_list.css') }}" rel="stylesheet">
+@endsection
 @section('content')
-    <div class="m-5">
-        <div class="card-columns mt-5">
+    <div class="container mt-5">
+        <div class="row">
             @foreach ($staff as $member)
-                <div class="card testimonial_card">
+                {{-- <div class="card testimonial_card">
                     <div class="text-center bg-light car_image_holder">
                         <img src="{{ asset($member->profile_pic) }}" class="card-img-top h-100 rounded-circle" alt="{{ $member->name }}">
                     </div>
@@ -25,7 +29,46 @@
                             </button>
                         </form>
                     </div>
-                </div>            
+                </div> --}}
+
+                <div class="col-md-4">
+                    <div class="card user-card">
+                        <div class="card-block">
+                            <div class="user-image">
+                                <img src="{{ asset($member->profile_pic) }}" class="img-radius" alt="User-Profile-Image">
+                            </div>
+                            <h6 class="f-w-600 m-t-25 m-b-10">{{ $member->name }}</h6>
+                            <p class="text-muted">{{ $member->position }}</p>
+                            <hr>
+                            <a href="{{ route('staff.show', $member->id) }}" class="btn btn-outline-success text-success">View Profile</a>
+                            <div class="bg-c-blue counter-block m-t-10 p-20">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <i class="fa fa-comment"></i>
+                                        <p>{{ $member->province }}</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="fa fa-user"></i>
+                                        <p>{{ $member->district }}</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="fa fa-suitcase"></i>
+                                        <p>{{ $member->address }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-muted mt-3">{{ $member->gender }} | {{ $member->date_of_employment }}</p>
+
+                            {{-- <p class="m-t-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <hr>
+                            <div class="row justify-content-center user-social-link">
+                                <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+                                <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+                                <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>          
             @endforeach
         </div>
     </div>

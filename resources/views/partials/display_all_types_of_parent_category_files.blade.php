@@ -3,8 +3,8 @@
                 <div class="col-12">
                     <div class="display-2 font-italic">{{ $cat->name }}</div>
                 </div>
-                @if ($training->file_objects != null && !empty($training->file_objects))
-                    @foreach ($training->file_objects as $file)
+                @if ($object->file_objects != null && !empty($object->file_objects))
+                    @foreach ($object->file_objects as $file)
                         @if ($file->parent_category_id == $cat->id)
                             <div class="col-3">
                                 <div class="card mou_file_cards">

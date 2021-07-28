@@ -5,7 +5,7 @@
             @foreach ($staff as $member)
                 <div class="card testimonial_card">
                     <div class="text-center bg-light car_image_holder">
-                        <img src="{{ asset($member->image) }}" class="card-img-top h-100 rounded-circle" alt="{{ $member->name }}">
+                        <img src="{{ asset($member->profile_pic) }}" class="card-img-top h-100 rounded-circle" alt="{{ $member->name }}">
                     </div>
                     <div class="card-body">
                         <h3>{{ $member->ipso_id }}</h3>

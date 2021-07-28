@@ -16,7 +16,8 @@
                 </p>
             </div>
         </div>
-        @include('partials.display_all_types_of_parent_category_files');
+        @include('partials.display_all_types_of_parent_category_files', ['object' => $conference])
+
     </div>
 
     @include('partials.modal');

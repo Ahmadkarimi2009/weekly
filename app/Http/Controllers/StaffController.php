@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Traits\CommonFunctions;
 use Session;
 
 class StaffController extends Controller
 {
+    use CommonFunctions;
+
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +30,12 @@ class StaffController extends Controller
      */
     public function create()
     {
+        $parent_categories = Category::where('parent', 'yes')->get();
+        $child_categories = Category::where('parent', 'no')->get();
         $route = route('staff.store');
         $method = 'POST';
 
-        return view('add_edit_staff', compact('route', 'method'));
+        return view('add_edit_staff', compact('route', 'method', 'parent_categories', 'child_categories'));
     }
 
     /**
@@ -56,15 +62,36 @@ class StaffController extends Controller
         $staff->date_of_employment = $request->date_of_employment;
         $staff->gender = $request->gender;
         $staff->job_description = $request->job_description;
-        $staff->category_id = $request->category_id;
+        $staff->working_location = $request->working_location;
+        $staff->education = $request->education;
+        $staff->address = $request->address;
 
-        if ($request->hasFile('image')) {
-            $name = $request->name . ' ' . microtime(true) . '.' . $request->image->getClientOriginalExtension();
-            $path = $image->storeAs('staff_image', $name);
-            $staff->image = $path;
+        if ($request->hasFile('profile_pic')) {
+            $name = $request->name . ' ' . microtime(true) . '.' . $request->profile_pic->getClientOriginalExtension();
+            $path = $request->profile_pic->storeAs('staff_image', $name);
+            $staff->profile_pic = $path;
         }
 
         $staff->save();
+
+        // Loop through the object of the file inputs group.
+        foreach($request->group_inputs as $group) {
+
+            // Check if this file input has files to upload.
+            if (isset($group['files']) && count($group['files']) > 0) {
+
+                // Loop through the file for this category.
+                foreach ($group['files'] as $file) {
+
+                    // Store the files and return the model to be saved.
+                    $file_obj = $this->store_this_file($group, $file);
+
+                    // Save the model using the relationship with conference.
+                    $staff->file_objects()->save($file_obj);
+                }
+            }
+        }
+
         Session::flash('message', ["Insertion Successful!", "Staff added Successfully!", "success"]);
         return redirect()->route('staff.index');
     }
@@ -77,7 +104,9 @@ class StaffController extends Controller
      */
     public function show(Staff $staff)
     {
-        //
+        $parent_categories = Category::where('parent', 'yes')->get();
+        $child_categories = Category::where('parent', 'no')->get();
+        return view('single_staff', compact('staff', 'parent_categories', 'child_categories'));
     }
 
     /**

@@ -18,15 +18,10 @@ class CreateTrainingsTable extends Migration
             $table->string('title')->nullable();
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('participants_list_files')->nullable();
             $table->jsonb('participants_list_ids')->nullable();
             $table->string('location')->nullable();
             $table->text('details')->nullable();
-            $table->jsonb('photos')->nullable();
-            $table->jsonb('videos')->nullable();
             $table->string('trainers')->nullable();
-            $table->jsonb('materials')->nullable();
-            $table->jsonb('attendance_files')->nullable();
             $table->timestamps();
         });
     }

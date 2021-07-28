@@ -46,25 +46,7 @@
                 <textarea name="details" id="" cols="30" rows="10" class="form-control text_area"></textarea>
               </div>
             </div>
-            
-            <div class="col-sm-12">
-              <div class="border rounded p-3 mt-3">
-                <label for="upload_images_input">Images</label>
-                <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="images[]" id="upload_images_input" multiple>
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="border rounded p-3 mt-3">
-                <label for="upload_videos_input">Videos</label>
-                <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="videos[]" id="upload_videos_input" multiple>
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="border rounded p-3 mt-3">
-                <label for="upload_files_input">Files</label>
-                <input type="file" class="form-control form-control-lg border-0 mt-2 ps-3" name="files[]" id="upload_files_input" multiple>
-              </div>
-            </div>
+            @include('partials.file_input_group')
             @foreach($staff as $member)
                 <div class="col-md-4 col-xl-3 mt-3">
                     <div class="card staff_list_card" data-staff_id="{{ $member->id }}">
@@ -83,7 +65,6 @@
             <div class="col-sm-12">
               <button type="button" class="btn btn-success btn-lg btn-block mt-3 add_edit_report_form_submit_btn">Save</button>
               <input type="text" class="d-none" name="participants_list_ids" id="input_for_staff_ids">
-              <input type="number" class="d-none" name="category" value="{{ $training_category_id }}">
             </div>
           </form>
   </div>
@@ -97,6 +78,11 @@
       var old_entity = {!! $old !!};
     </script>
   @endisset
+    <script>
+    var parent_categories = {!! $parent_categories !!};
+    var child_categories = {!! $child_categories !!};
+  </script>
+  <script src="{{ asset('js/add_more_file_inputs.js') }}"></script>
 
   <script>
     $('.text_area').trumbowyg();

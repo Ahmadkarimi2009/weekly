@@ -32,14 +32,6 @@ class CategorySeeder extends Seeder
                 'parent' => 'no',
             ],
             [
-                'name' => 'conference',
-                'parent' => 'no',
-            ],
-            [
-                'name' => 'weekly reports',
-                'parent' => 'no'
-            ],
-            [
                 'name' => 'monthly reports',
                 'parent' => 'no'
             ],
@@ -52,11 +44,19 @@ class CategorySeeder extends Seeder
                 'parent' => 'no'
             ],
             [
-                'name' => 'mou',
+                'name' => 'attendance files',
                 'parent' => 'no'
             ],
             [
-                'name' => 'training',
+                'name' => 'participants list files',
+                'parent' => 'no'
+            ],
+            [
+                'name' => 'training materials',
+                'parent' => 'no'
+            ],
+            [
+                'name' => '6 months action plans',
                 'parent' => 'no'
             ]
         ];

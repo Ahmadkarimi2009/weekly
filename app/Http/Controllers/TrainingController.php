@@ -6,10 +6,12 @@ use App\Models\Training;
 use App\Models\Category;
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use App\Http\Traits\CommonFunctions;
 use Session;
 
 class TrainingController extends Controller
 {
+    use CommonFunctions;
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +19,7 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        $trainings = Training::find(1);
-
-        dd($trainings->participants_list_ids);
+        $trainings = Training::all();
     }
 
     /**
@@ -29,14 +29,13 @@ class TrainingController extends Controller
      */
     public function create()
     {
-        $training_parent_category = Category::where('name', 'files')->first();
-        $training_category_id = Category::where('parent', $training_parent_category->id)
-        ->where('name', 'training')->first()->id;
+        $parent_categories = Category::where('parent', 'yes')->get();
+        $child_categories = Category::where('parent', 'no')->get();
 
         $staff = Staff::all();
         $route = route('training.store');
         $method = "POST";
-        return view('add_edit_training', compact('route', 'method', 'staff', 'training_category_id'));
+        return view('add_edit_training', compact('route', 'method', 'staff', 'parent_categories', 'child_categories'));
     }
 
     /**
@@ -48,6 +47,7 @@ class TrainingController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->all());
         $request->validate([
             'start_date' => 'required',
             'end_date' => 'required',
@@ -63,6 +63,26 @@ class TrainingController extends Controller
         $training->trainers = $request->trainers;
         $training->save();
 
+
+        // Loop through the object of the file inputs group.
+        foreach($request->group_inputs as $group) {
+
+            // Check if this file input has files to upload.
+            if (isset($group['files']) && count($group['files']) > 0) {
+
+                // Loop through the file for this category.
+                foreach ($group['files'] as $file) {
+
+                    // Store the files and return the model to be saved.
+                    $file_obj = $this->store_this_file($group, $file);
+
+                    // Save the model using the relationship with conference.
+                    $training->file_objects()->save($file_obj);
+                }
+            }
+        }
+
+
         Session::flash('message', ["Insertion Successful!", "Training data added Successfully!", "success"]);
         return redirect()->route('training.index');
     }
@@ -75,7 +95,9 @@ class TrainingController extends Controller
      */
     public function show(Training $training)
     {
-        //
+        $parent_categories = Category::where('parent', 'yes')->get();
+        $child_categories = Category::where('parent', 'no')->get();
+        return view('single_training', compact('training', 'parent_categories', 'child_categories'));
     }
 
     /**

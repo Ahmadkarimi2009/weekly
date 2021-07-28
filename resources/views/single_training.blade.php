@@ -3,20 +3,21 @@
     <div class="container">
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
-              <h1 class="display-4 font-italic">{{ $conference->title }}</h1>
+              <h1 class="display-4 font-italic">{{ $training->title }}</h1>
               <p class="lead my-3 text-success">
-                @if ($conference->avenue != "" && $conference->avenue != " " && $conference->avenue != "  ")
-                    {{ $conference->avenue }},
+                @if ($training->location != "" && $training->location != " " && $training->location != "  ")
+                    {{ $training->location }},
                 @endif  
-                {{ $conference->province_table->name }}, {{ date('F d,Y', strtotime($conference->date)) }}</p>
+                {{ date('F d,Y', strtotime($training->start_date)) }} - {{ date('F d,Y', strtotime($training->end_date)) }}</p>
 
                 <h1 class="display-1">Details</h1>
                 <p class="lead">
-                    {!! $conference->details !!}
+                    {!! $training->details !!}
                 </p>
             </div>
         </div>
         @include('partials.display_all_types_of_parent_category_files');
+
     </div>
 
     @include('partials.modal');

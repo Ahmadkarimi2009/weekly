@@ -16,6 +16,7 @@ use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\TripController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('file', FileController::class);
     Route::resource('conferences', ConferenceController::class);
     Route::resource('training', TrainingController::class);
+    Route::resource('trip', TripController::class);
 
 
     Route::get('/activities/{event_type?}', [ReportController::class, 'event_type'])->name('activities');

@@ -45,8 +45,8 @@
                 @break;
             @endif
             @foreach ($provinces as $province)
-                @if ($province->id == $province_id)
-                    <span class="badge badge-primary">{{ $province->name }}</span>
+                @if ($province['id'] == $province_id)
+                    <span class="badge badge-primary">{{ $province['name'] }}</span>
                 @endif
             @endforeach
         @endforeach

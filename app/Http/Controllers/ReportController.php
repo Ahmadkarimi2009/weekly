@@ -273,7 +273,6 @@ class ReportController extends Controller
             ->get();
         }
 
-        // dd($reports);
         $filter_params = $request->input();
         $event_types = EventType::all();
         $provinces = Province::all();

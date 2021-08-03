@@ -9,7 +9,7 @@ class Report extends Model
 {
     use HasFactory;
 
-    protected $with = ['province_table'];
+    protected $with = ['province_table', 'activity_type_table'];
 
     public function province_table() {
         return $this->belongsTo(province::class, 'province');
@@ -17,6 +17,10 @@ class Report extends Model
 
     public function testimonial() {
         return $this->hasMany(Testimonial::class);
+    }
+
+    public function activity_type_table() {
+        return $this->belongsTo(EventType::class, 'event_type_id');
     }
 
     /**

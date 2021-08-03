@@ -57,7 +57,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/blog', [BlogController::class, 'index'])->name('blog');
     Route::get('/activities/province/{province_id}/{event_type_id}', [ReportController::class, 'province_activity'])->name('activities.province');
     Route::post('/specific_report', [ReportController::class, 'specific_report'])->name('specific_report');
-    Route::post('/readonly_report', [ReportController::class, 'readonly_specific_report'])->name('readonly_report');
+    Route::post('/readonly_report', [ReportController::class, 'display_graphics'])->name('readonly_report');
     Route::get('/advance', function(){
         return view('advance_settings');
     });

@@ -50,3 +50,8 @@
     border: 5px solid white;
     box-shadow: 0 0 35px darkslategrey;
 }
+
+#myChart,
+#myChart_doughnut {
+    height: 400px;
+}
